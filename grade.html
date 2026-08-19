@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khối lớp học tập - Ngữ Văn 4.0</title>
-  <meta name="description" content="Chi tiết chương trình học tập Ngữ Văn theo khối lớp. Sơ đồ tư duy bài giảng trực quan và danh sách đề thi luyện tập chọn lọc.">
+  <title>Khối lớp học tập THCS - Ngữ Văn 4.0</title>
+  <meta name="description" content="Chi tiết chương trình học tập Ngữ Văn THCS theo khối lớp 6, 7, 8, 9. Sơ đồ tư duy bài giảng trực quan và danh sách đề thi luyện tập chọn lọc.">
   
   <!-- Tailwind CSS v4 Browser CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -35,7 +35,7 @@
       <!-- Grade Page Header Banner -->
       <div class="relative rounded-3xl bg-gradient-to-r from-emerald-800 to-slate-900 dark:from-emerald-950/60 dark:to-slate-950 p-8 sm:p-12 overflow-hidden shadow-lg mb-12 animate-fade-in">
         <!-- Glow decorations -->
-        <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute right-0 top-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
         <div class="absolute left-1/3 bottom-0 w-60 h-20 bg-teal-500/10 rounded-full blur-xl"></div>
         
         <div class="relative z-10">
@@ -43,9 +43,9 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Quay lại trang chủ</span>
           </a>
-          <h1 id="grade-title" class="text-3xl sm:text-4xl font-extrabold font-serif-title text-white tracking-tight">Ngữ văn lớp 12</h1>
+          <h1 id="grade-title" class="text-3xl sm:text-4xl font-extrabold font-serif-title text-white tracking-tight">Ngữ văn lớp 9</h1>
           <p id="grade-desc" class="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl">
-            Học tập các tác phẩm văn học cốt lõi, khám phá sơ đồ tư duy trực quan hệ thống và ôn luyện ngân hàng đề kiểm tra học lực trắc nghiệm.
+            Chinh phục kiến thức trọng tâm, thơ hiện đại, văn bản nghị luận và chuẩn bị vững vàng cho kì thi tuyển sinh vào lớp 10.
           </p>
         </div>
       </div>
@@ -72,7 +72,7 @@
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <!-- Left side: Lessons List -->
             <div class="lg:col-span-4 space-y-4" id="lessons-list">
-              <!-- Sẽ chèn các nút bài học ở đây -->
+              <!-- Rendered by JS -->
             </div>
             
             <!-- Right side: Lesson Detail & Interactive Mindmap -->
@@ -83,8 +83,8 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200/30 dark:border-slate-800/30 gap-4">
                   <div>
                     <span id="detail-lesson-type" class="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">Thơ</span>
-                    <h2 id="detail-lesson-title" class="text-2xl font-bold font-serif-title mt-2 text-slate-900 dark:text-white">Tây Tiến</h2>
-                    <p class="text-xs text-slate-400 mt-1">Tác giả: <span id="detail-lesson-author" class="font-semibold text-slate-600 dark:text-slate-300">Quang Dũng</span> | Sáng tác năm: <span id="detail-lesson-year" class="font-semibold text-slate-600 dark:text-slate-300">1948</span></p>
+                    <h2 id="detail-lesson-title" class="text-2xl font-bold font-serif-title mt-2 text-slate-900 dark:text-white">Đồng chí</h2>
+                    <p class="text-xs text-slate-400 mt-1">Tác giả: <span id="detail-lesson-author" class="font-semibold text-slate-600 dark:text-slate-300">Chính Hữu</span> | Sáng tác: <span id="detail-lesson-year" class="font-semibold text-slate-600 dark:text-slate-300">1948</span></p>
                   </div>
                   
                   <!-- Checkbox Completed -->
@@ -102,7 +102,7 @@
                     <span>Tóm tắt giá trị tác phẩm</span>
                   </h3>
                   <p id="detail-lesson-summary" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/30">
-                    Nội dung tóm tắt tác phẩm nghệ thuật.
+                    Nội dung tóm tắt tác phẩm.
                   </p>
                 </div>
 
@@ -138,7 +138,6 @@
                     </span>
                   </div>
                   
-                  <!-- Sơ đồ tư duy bằng CSS/JS tương tác -->
                   <div class="border border-slate-200/50 dark:border-slate-800/50 bg-white dark:bg-slate-950 rounded-2xl p-4 sm:p-6 overflow-hidden relative shadow-inner min-h-[300px]">
                     <div id="mindmap-canvas" class="flex flex-col items-center justify-center space-y-4">
                       <!-- Rendered by JS -->
@@ -177,15 +176,14 @@
   <script src="assets/js/common.js"></script>
   
   <script>
-    // Logic riêng cho trang khối lớp
-    let selectedClass = 12; // Mặc định
+    let selectedClass = 9; // Mặc định khối 9
     let activeLessonId = null;
 
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Phân tích tham số URL lớp học (?class=10|11|12)
+      // 1. Phân tích tham số URL lớp học (?class=6|7|8|9)
       const urlParams = new URLSearchParams(window.location.search);
       const classParam = parseInt(urlParams.get("class"));
-      if (classParam === 10 || classParam === 11 || classParam === 12) {
+      if ([6, 7, 8, 9].includes(classParam)) {
         selectedClass = classParam;
       }
       
@@ -193,15 +191,17 @@
       document.getElementById("grade-title").innerText = `Ngữ văn lớp ${selectedClass}`;
       document.title = `Chương trình Ngữ Văn Lớp ${selectedClass} - Ngữ Văn 4.0`;
       
-      if (selectedClass === 12) {
-        document.getElementById("grade-desc").innerText = "Trọng tâm ôn luyện kì thi tốt nghiệp THPT Quốc gia với các tác phẩm kinh điển hiện đại Việt Nam.";
-      } else if (selectedClass === 11) {
-        document.getElementById("grade-desc").innerText = "Chương trình chuyên sâu về các thể loại Truyện ngắn Lãng mạn, Truyện ngắn Hiện thực và Kịch tiêu biểu.";
-      } else if (selectedClass === 10) {
-        document.getElementById("grade-desc").innerText = "Tìm hiểu thế giới Sử thi dân gian hào hùng, các tác phẩm Thơ chữ Hán, chữ Nôm trung đại đặc sắc.";
+      if (selectedClass === 9) {
+        document.getElementById("grade-desc").innerText = "Chinh phục kiến thức trọng tâm, thơ hiện đại, văn bản nghị luận và chuẩn bị vững vàng cho kì thi tuyển sinh vào lớp 10.";
+      } else if (selectedClass === 8) {
+        document.getElementById("grade-desc").innerText = "Khám phá văn bản hịch, cáo, thơ trào phúng, truyện ngắn hiện thực và rèn luyện kỹ năng viết văn nghị luận.";
+      } else if (selectedClass === 7) {
+        document.getElementById("grade-desc").innerText = "Mở rộng vốn sống với thơ ca dân gian, thơ trữ tình, tùy bút, tản văn và truyện ngắn đặc sắc.";
+      } else if (selectedClass === 6) {
+        document.getElementById("grade-desc").innerText = "Làm quen với truyền thuyết, cổ tích, truyện đồng thoại, thơ ca và các văn bản nhật dụng phong phú.";
       }
 
-      // 2. Tải danh sách bài học và danh sách đề thi
+      // 2. Tải danh sách bài học và đề thi theo khối lớp THCS
       loadLessonsList();
       loadExamsList();
     });
@@ -259,7 +259,6 @@
         `;
       }).join('');
 
-      // Render lại icon Lucide
       if (typeof lucide !== "undefined") {
         lucide.createIcons();
       }
@@ -273,7 +272,6 @@
 
       if (!lesson) return;
 
-      // Xóa class active cũ và gán vào nút mới
       document.querySelectorAll("[id^='lesson-btn-']").forEach(btn => {
         btn.classList.remove("border-emerald-500", "dark:border-emerald-500", "ring-1", "ring-emerald-500");
       });
@@ -282,12 +280,10 @@
         activeBtn.classList.add("border-emerald-500", "dark:border-emerald-500", "ring-1", "ring-emerald-500");
       }
 
-      // Hiện nội dung ẩn trạng thái trống
       document.getElementById("lesson-empty-state").classList.add("hidden");
       const detailContainer = document.getElementById("lesson-detail-container");
       detailContainer.classList.remove("hidden");
 
-      // Nạp dữ liệu văn bản
       document.getElementById("detail-lesson-type").innerText = lesson.type;
       document.getElementById("detail-lesson-title").innerText = lesson.title;
       document.getElementById("detail-lesson-author").innerText = lesson.author;
@@ -297,19 +293,14 @@
       document.getElementById("detail-lesson-content").innerText = lesson.coreValues.content;
       document.getElementById("detail-lesson-art").innerText = lesson.coreValues.art;
 
-      // Cập nhật trạng thái nút hoàn thành học tập
       updateCompleteButtonState(lessonId);
-
-      // Render Sơ đồ tư duy
       renderMindmap(lesson.mindmap);
 
-      // Tạo lại icon
       if (typeof lucide !== "undefined") {
         lucide.createIcons();
       }
     }
 
-    // Cập nhật trạng thái nút đã học xong
     function updateCompleteButtonState(lessonId) {
       const stats = getUserStats();
       const isCompleted = stats.completedLessons.includes(lessonId);
@@ -332,16 +323,12 @@
       }
     }
 
-    // Tải hành động đổi trạng thái học tập
     function toggleCurrentLessonCompletion() {
       if (!activeLessonId) return;
 
       const stats = toggleLessonCompletion(activeLessonId);
-      
-      // 1. Cập nhật nút
       updateCompleteButtonState(activeLessonId);
       
-      // 2. Cập nhật badge trên danh sách nút bài học
       const badge = document.getElementById(`lesson-badge-${activeLessonId}`);
       if (badge) {
         const isCompleted = stats.completedLessons.includes(activeLessonId);
@@ -350,7 +337,6 @@
       }
     }
 
-    // Vẽ Sơ đồ tư duy dạng Cây Tương tác
     function renderMindmap(mindmapData) {
       const container = document.getElementById("mindmap-canvas");
       if (!mindmapData) {
@@ -358,7 +344,6 @@
         return;
       }
 
-      // Xây dựng cây trực quan bằng cấu trúc HTML lồng nhau sang trọng
       function createNodeHtml(node, depth = 0) {
         const isRoot = depth === 0;
         const colorClass = isRoot 
@@ -373,7 +358,6 @@
             <div class="flex flex-col sm:flex-row justify-center items-stretch gap-4 mt-4 w-full relative">
               ${node.children.map(child => `
                 <div class="flex flex-col items-center flex-1 relative pt-2">
-                  <!-- Đường line nối (mô phỏng trên màn hình lớn) -->
                   <div class="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-slate-200 dark:bg-slate-800"></div>
                   ${createNodeHtml(child, depth + 1)}
                 </div>
@@ -399,7 +383,6 @@
       `;
     }
 
-    // Kết xuất Danh sách Đề thi tương ứng khối lớp
     function loadExamsList() {
       const container = document.getElementById("exams-list");
       const exams = NGU_VAN_DATA.exams.filter(e => e.grade === selectedClass) || [];
@@ -442,7 +425,7 @@
                 <span>•</span>
                 <span>${exam.duration} phút</span>
               </p>
-              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề ôn luyện chất lượng cao bám sát cấu trúc đề thi THPT.'}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề ôn luyện chất lượng cao bám sát chương trình THCS.'}</p>
             </div>
             <a href="quiz.html?examId=${exam.id}" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-500/10 transition-all active:scale-95">
               <i data-lucide="play" class="w-4 h-4 fill-current"></i>
