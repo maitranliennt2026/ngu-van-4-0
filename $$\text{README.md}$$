@@ -1,0 +1,61 @@
+# Walkthrough - Dự án Ngữ Văn 4.0
+
+Dự án **Ngữ Văn 4.0** đã hoàn thành xây dựng toàn bộ mã nguồn giao diện sạch, tương tác mượt mà bằng HTML5, Tailwind CSS v4 và Javascript thuần. Cấu trúc dự án tối ưu hóa việc phân chia mã nguồn rõ ràng giữa giao diện, lô-gic xử lý và cơ sở dữ liệu tĩnh.
+
+---
+
+## Kiến trúc thư mục triển khai
+
+Các tệp được lưu trữ trực tiếp tại thư mục dự án `d:\.agent\Dự án Ngữ Văn 4.0\`:
+
+```text
+Dự án Ngữ Văn 4.0/
+├── index.html               # Trang chủ (Dashboard, Khối lớp, Đề thi nổi bật)
+├── grade.html               # Trang chi tiết khối lớp (Bài học, Sơ đồ tư duy)
+├── exams.html               # Ngân hàng đề thi trắc nghiệm (Bộ lọc & Tìm kiếm)
+├── quiz.html                # Trình làm bài thi trắc nghiệm (Chấm điểm & Giải chi tiết)
+├── ai-helper.html           # Trợ lý văn học AI 4.0 (Chatbot học tập mô phỏng)
+└── assets/
+    ├── css/
+    │   └── style.css        # Hiệu ứng Glassmorphic, Scrollbar, Custom Keyframe
+    └── js/
+        ├── data.js          # Cơ sở dữ liệu bài học & đề thi kèm lời giải chi tiết
+        └── common.js        # Đổi Dark Mode, tự động nạp Header/Footer, quản lý LocalStorage
+```
+
+---
+
+## Các tính năng nổi bật của Giao diện
+
+### 1. Thiết kế Giao diện Đỉnh cao (Premium Design)
+* **Glassmorphic & Glow Effects:** Sử dụng hiệu ứng nền mờ sang trọng cho các bảng thông số và thanh điều hướng.
+* **Dual Theme (Sáng/Tối):** Tích hợp chuyển đổi Dark Mode mượt mà thông qua việc thêm class `.dark` vào thẻ `<html>` và lưu lại tùy chọn trong `localStorage`.
+* **Phông chữ Văn chương cổ điển lai Hiện đại:** Kết hợp Serif (*Playfair Display* cho tiêu đề văn học) và Sans-serif (*Plus Jakarta Sans* cho văn bản thường) giúp trang web có cảm giác bay bổng, lãng mạn nhưng rất khoa học.
+
+### 2. Quản lý Tiến độ thông qua LocalStorage
+* **Học tập:** Người dùng có thể tích chọn "Đã học xong" cho từng tác phẩm ở `grade.html`. Số liệu bài đã học sẽ tự động đồng bộ lên Bảng điều khiển (Dashboard) của `index.html`.
+* **Làm đề thi:** Sau khi hoàn thành bài trắc nghiệm ở `quiz.html`, kết quả điểm số (hệ 10) và thời gian thực hiện sẽ được lưu lại, tính toán điểm trung bình trên hệ thống.
+
+### 3. Sơ đồ Tư duy Tương tác Sinh động
+* Trong trang `grade.html`, các nhánh sơ đồ tư duy của mỗi bài học được dựng động bằng thuật toán dựng cây HTML/CSS, có hiệu ứng hover phóng to và kết nối nhánh tối giản.
+
+### 4. Giao diện Làm bài & Đáp án Chi tiết
+* Đồng hồ đếm ngược thông báo đổi màu đỏ khi sắp hết giờ.
+* Nút cờ đánh dấu câu hỏi cần xem lại, tự động đổi màu trạng thái trên bảng điều hướng nhanh.
+* Sau khi nộp bài: Hiển thị biểu đồ vòng tròn chấm điểm trực quan (SVG), bảng phân tích câu trả lời đúng/sai của học sinh và hộp **Giải thích chi tiết (Lời giải)** sâu sắc về mặt văn học cho từng câu hỏi.
+
+### 5. Chatbot AI hỗ trợ học tập (Simulated LLM)
+* Trực quan hóa một khung chat thông minh với Trợ lý AI.
+* Người dùng có thể nhấn các gợi ý phân tích nhanh hoặc nhập câu hỏi tự do về "Tây Tiến", "Sóng", "Vợ chồng A Phủ" để xem luồng phản hồi chi tiết từ AI.
+
+---
+
+## Hướng dẫn trải nghiệm dự án
+
+Vì dự án được thiết kế hoàn toàn bằng mã nguồn tĩnh kết hợp CDN tối ưu, bạn không cần cài đặt bất kỳ công cụ dòng lệnh nào:
+
+1. **Khởi chạy cục bộ:** Click trực tiếp vào tệp `index.html` trong thư mục dự án để mở trên trình duyệt (hoặc click chuột phải chọn *Open with Live Server* trong VS Code).
+2. **Khám phá các trang:**
+   * Di chuyển qua các khối lớp 10, 11, 12 để chọn bài và tích chọn tiến độ học tập.
+   * Thử sức làm đề trắc nghiệm lớp 12 tại `quiz.html?examId=thpt-qg-01` để xem chức năng chấm điểm và sửa lỗi chi tiết.
+   * Chát thử với Trợ lý AI tại trang Trợ lý AI.
