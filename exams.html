@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngân hàng đề thi trắc nghiệm Ngữ Văn - Ngữ Văn 4.0</title>
+  <meta name="description" content="Khám phá ngân hàng đề thi trắc nghiệm Ngữ văn phong phú. Hỗ trợ lọc theo khối lớp 10, 11, 12, độ khó và tìm kiếm nhanh chóng.">
+  
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind v4 Custom Style Config -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary-emerald: #10b981;
+      --color-primary-teal: #14b8a6;
+      --color-accent-amber: #f59e0b;
+      --font-serif-display: "Playfair Display", serif;
+      --font-sans-body: "Plus Jakarta Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- Main Content -->
+  <main class="flex-grow py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-10 text-center md:text-left md:flex md:items-center md:justify-between border-b border-slate-200/50 dark:border-slate-800/30 pb-6">
+        <div>
+          <h1 class="text-3xl font-extrabold font-serif-title tracking-tight text-slate-900 dark:text-white">Ngân hàng đề thi</h1>
+          <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Hệ thống đề thi trắc nghiệm khách quan đa dạng, cập nhật liên tục bám sát kì thi tốt nghiệp THPT Quốc gia.</p>
+        </div>
+        
+        <!-- Live statistics -->
+        <div class="mt-6 md:mt-0 flex items-center justify-center space-x-6 text-xs font-semibold bg-white dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/50 p-4 rounded-2xl shadow-sm">
+          <div class="text-center">
+            <span class="block text-slate-400">Tổng số đề</span>
+            <span class="text-lg font-bold text-emerald-500" id="total-exams-badge">3</span>
+          </div>
+          <div class="w-px h-8 bg-slate-200 dark:bg-slate-800"></div>
+          <div class="text-center">
+            <span class="block text-slate-400">Tổng số câu hỏi</span>
+            <span class="text-lg font-bold text-teal-500" id="total-questions-badge">25</span>
+          </div>
+          <div class="w-px h-8 bg-slate-200 dark:bg-slate-800"></div>
+          <div class="text-center">
+            <span class="block text-slate-400">Lượt thi thử</span>
+            <span class="text-lg font-bold text-indigo-500">15,620+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters Section -->
+      <div class="glass-effect p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-sm mb-10 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Search input -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+            </span>
+            <input type="text" id="filter-search" oninput="applyFilters()" placeholder="Tìm kiếm đề thi..." 
+              class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500">
+          </div>
+
+          <!-- Class Selector -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+            </span>
+            <select id="filter-class" onchange="applyFilters()" 
+              class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 appearance-none cursor-pointer">
+              <option value="all">Tất cả Khối lớp</option>
+              <option value="12">Lớp 12</option>
+              <option value="11">Lớp 11</option>
+              <option value="10">Lớp 10</option>
+            </select>
+          </div>
+
+          <!-- Difficulty Selector -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i data-lucide="gauge" class="w-4 h-4 text-slate-400"></i>
+            </span>
+            <select id="filter-difficulty" onchange="applyFilters()" 
+              class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 appearance-none cursor-pointer">
+              <option value="all">Tất cả Độ khó</option>
+              <option value="Dễ">Dễ</option>
+              <option value="Trung bình">Trung bình</option>
+              <option value="Khó">Khó</option>
+            </select>
+          </div>
+
+          <!-- Sort Selector -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-slate-400"></i>
+            </span>
+            <select id="filter-sort" onchange="applyFilters()" 
+              class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 appearance-none cursor-pointer">
+              <option value="popular">Nổi bật (Lượt thi nhiều)</option>
+              <option value="rating">Được đánh giá cao</option>
+              <option value="duration-asc">Thời gian ngắn trước</option>
+              <option value="duration-desc">Thời gian dài trước</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Exams Grid Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="exams-grid-container">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Empty Result State -->
+      <div id="exams-empty-state" class="hidden glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-16 text-center shadow-sm max-w-md mx-auto flex flex-col items-center justify-center">
+        <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 mb-4">
+          <i data-lucide="frown" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Không tìm thấy đề thi</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Hãy thử thay đổi từ khóa tìm kiếm hoặc chỉnh lại bộ lọc lớp học/độ khó.</p>
+        <button onclick="resetFilters()" class="mt-6 px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-500 hover:bg-emerald-600">Xóa bộ lọc</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+
+  <script>
+    // Logic quản lý bộ lọc
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Phân tích tham số tìm kiếm từ trang chủ (nếu có)
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQuery = urlParams.get("search");
+      if (searchQuery) {
+        document.getElementById("filter-search").value = searchQuery;
+      }
+
+      // Cập nhật thống kê số lượng đề/câu hỏi
+      const totalExams = NGU_VAN_DATA.exams.length;
+      let totalQuestions = 0;
+      NGU_VAN_DATA.exams.forEach(e => {
+        totalQuestions += e.questionsCount;
+      });
+      document.getElementById("total-exams-badge").innerText = totalExams;
+      document.getElementById("total-questions-badge").innerText = totalQuestions;
+
+      // 2. Chạy kết xuất lần đầu
+      applyFilters();
+    });
+
+    function applyFilters() {
+      const searchVal = document.getElementById("filter-search").value.toLowerCase().trim();
+      const classVal = document.getElementById("filter-class").value;
+      const diffVal = document.getElementById("filter-difficulty").value;
+      const sortVal = document.getElementById("filter-sort").value;
+
+      // Bắt đầu lọc từ data.js
+      let filteredExams = [...NGU_VAN_DATA.exams];
+
+      // 1. Lọc theo tìm kiếm từ khóa
+      if (searchVal) {
+        filteredExams = filteredExams.filter(exam => 
+          exam.title.toLowerCase().includes(searchVal) || 
+          (exam.description && exam.description.toLowerCase().includes(searchVal))
+        );
+      }
+
+      // 2. Lọc theo Khối lớp
+      if (classVal !== "all") {
+        filteredExams = filteredExams.filter(exam => exam.grade === parseInt(classVal));
+      }
+
+      // 3. Lọc theo Độ khó
+      if (diffVal !== "all") {
+        filteredExams = filteredExams.filter(exam => exam.difficulty === diffVal);
+      }
+
+      // 4. Sắp xếp kết quả
+      if (sortVal === "popular") {
+        filteredExams.sort((a, b) => b.attempts - a.attempts);
+      } else if (sortVal === "rating") {
+        filteredExams.sort((a, b) => b.rating - a.rating);
+      } else if (sortVal === "duration-asc") {
+        filteredExams.sort((a, b) => a.duration - b.duration);
+      } else if (sortVal === "duration-desc") {
+        filteredExams.sort((a, b) => b.duration - a.duration);
+      }
+
+      // Render danh sách
+      renderExamsList(filteredExams);
+    }
+
+    function renderExamsList(examsList) {
+      const grid = document.getElementById("exams-grid-container");
+      const emptyState = document.getElementById("exams-empty-state");
+
+      if (examsList.length === 0) {
+        grid.classList.add("hidden");
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      grid.classList.remove("hidden");
+      emptyState.classList.add("hidden");
+
+      grid.innerHTML = examsList.map(exam => {
+        let diffColor = "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300";
+        if (exam.difficulty === "Dễ") diffColor = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400";
+        else if (exam.difficulty === "Trung bình") diffColor = "bg-amber-100 text-amber-800 dark:bg-amber-950/30 dark:text-amber-400";
+        else if (exam.difficulty === "Khó") diffColor = "bg-red-100 text-red-800 dark:bg-red-950/30 dark:text-red-400";
+
+        return `
+          <div class="glass-effect rounded-2xl border border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between hover:shadow-lg hover:border-emerald-500/20 dark:hover:border-emerald-500/20 transition-all duration-300 animate-fade-in">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${diffColor}">
+                  ${exam.difficulty}
+                </span>
+                <span class="text-xs font-semibold text-slate-400 flex items-center space-x-1">
+                  <i data-lucide="users" class="w-3.5 h-3.5 inline"></i>
+                  <span>${exam.attempts.toLocaleString()} lượt</span>
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-2 min-h-[3.5rem]">${exam.title}</h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mb-4 flex items-center space-x-2">
+                <span>Khối Lớp ${exam.grade}</span>
+                <span>•</span>
+                <span>${exam.questionsCount} câu hỏi</span>
+                <span>•</span>
+                <span>${exam.duration} phút</span>
+              </p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề kiểm tra ôn luyện chất lượng cao phục vụ đánh giá năng lực văn học.'}</p>
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center text-xs font-semibold text-slate-400 px-1">
+                <span class="flex items-center space-x-1">
+                  <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500 fill-current"></i>
+                  <span class="text-slate-700 dark:text-slate-300 font-bold">${exam.rating}</span>
+                </span>
+                <span>Đánh giá đề</span>
+              </div>
+              <a href="quiz.html?examId=${exam.id}" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-500/10 transition-all active:scale-95">
+                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                <span>Bắt đầu thi thử</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById("filter-search").value = "";
+      document.getElementById("filter-class").value = "all";
+      document.getElementById("filter-difficulty").value = "all";
+      document.getElementById("filter-sort").value = "popular";
+      applyFilters();
+    }
+  </script>
+</body>
+</html>

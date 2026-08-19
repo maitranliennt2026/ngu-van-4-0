@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khối lớp học tập - Ngữ Văn 4.0</title>
+  <meta name="description" content="Chi tiết chương trình học tập Ngữ Văn theo khối lớp. Sơ đồ tư duy bài giảng trực quan và danh sách đề thi luyện tập chọn lọc.">
+  
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind v4 Custom Style Config -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary-emerald: #10b981;
+      --color-primary-teal: #14b8a6;
+      --color-accent-amber: #f59e0b;
+      --font-serif-display: "Playfair Display", serif;
+      --font-sans-body: "Plus Jakarta Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- Main Content -->
+  <main class="flex-grow py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Grade Page Header Banner -->
+      <div class="relative rounded-3xl bg-gradient-to-r from-emerald-800 to-slate-900 dark:from-emerald-950/60 dark:to-slate-950 p-8 sm:p-12 overflow-hidden shadow-lg mb-12 animate-fade-in">
+        <!-- Glow decorations -->
+        <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute left-1/3 bottom-0 w-60 h-20 bg-teal-500/10 rounded-full blur-xl"></div>
+        
+        <div class="relative z-10">
+          <a href="index.html" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 mb-6 transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Quay lại trang chủ</span>
+          </a>
+          <h1 id="grade-title" class="text-3xl sm:text-4xl font-extrabold font-serif-title text-white tracking-tight">Ngữ văn lớp 12</h1>
+          <p id="grade-desc" class="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl">
+            Học tập các tác phẩm văn học cốt lõi, khám phá sơ đồ tư duy trực quan hệ thống và ôn luyện ngân hàng đề kiểm tra học lực trắc nghiệm.
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex border-b border-slate-200 dark:border-slate-800 mb-8 overflow-x-auto whitespace-nowrap">
+        <button id="tab-lessons-btn" onclick="switchTab('lessons')" 
+          class="px-6 py-3 text-sm font-bold border-b-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 flex items-center space-x-2 shrink-0 transition-colors">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>Bài học & Sơ đồ tư duy</span>
+        </button>
+        <button id="tab-exams-btn" onclick="switchTab('exams')" 
+          class="px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 flex items-center space-x-2 shrink-0 transition-colors">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Đề ôn luyện trắc nghiệm</span>
+        </button>
+      </div>
+
+      <!-- Content sections -->
+      <div>
+        
+        <!-- Tab 1: Lessons List -->
+        <div id="tab-lessons-content" class="space-y-8 animate-fade-in">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Left side: Lessons List -->
+            <div class="lg:col-span-4 space-y-4" id="lessons-list">
+              <!-- Sẽ chèn các nút bài học ở đây -->
+            </div>
+            
+            <!-- Right side: Lesson Detail & Interactive Mindmap -->
+            <div class="lg:col-span-8">
+              <div id="lesson-detail-container" class="glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-6 sm:p-8 shadow-sm space-y-8 hidden">
+                
+                <!-- Lesson Header Info -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200/30 dark:border-slate-800/30 gap-4">
+                  <div>
+                    <span id="detail-lesson-type" class="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">Thơ</span>
+                    <h2 id="detail-lesson-title" class="text-2xl font-bold font-serif-title mt-2 text-slate-900 dark:text-white">Tây Tiến</h2>
+                    <p class="text-xs text-slate-400 mt-1">Tác giả: <span id="detail-lesson-author" class="font-semibold text-slate-600 dark:text-slate-300">Quang Dũng</span> | Sáng tác năm: <span id="detail-lesson-year" class="font-semibold text-slate-600 dark:text-slate-300">1948</span></p>
+                  </div>
+                  
+                  <!-- Checkbox Completed -->
+                  <button id="complete-btn" onclick="toggleCurrentLessonCompletion()" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all">
+                    <i data-lucide="circle" class="w-4 h-4 text-slate-400" id="complete-icon-empty"></i>
+                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 hidden" id="complete-icon-checked"></i>
+                    <span id="complete-btn-text">Đánh dấu đã học</span>
+                  </button>
+                </div>
+
+                <!-- Summary Section -->
+                <div>
+                  <h3 class="text-sm font-bold uppercase text-slate-400 tracking-wider mb-2 flex items-center space-x-1.5">
+                    <i data-lucide="align-left" class="w-4 h-4"></i>
+                    <span>Tóm tắt giá trị tác phẩm</span>
+                  </h3>
+                  <p id="detail-lesson-summary" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/30">
+                    Nội dung tóm tắt tác phẩm nghệ thuật.
+                  </p>
+                </div>
+
+                <!-- Core Values Tabs: Nội dung & Nghệ thuật -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div class="p-5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-950/20">
+                    <h4 class="text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-2 flex items-center space-x-1.5">
+                      <i data-lucide="bookmark" class="w-4 h-4"></i>
+                      <span>Giá trị nội dung</span>
+                    </h4>
+                    <p id="detail-lesson-content" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"></p>
+                  </div>
+                  
+                  <div class="p-5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-950/20">
+                    <h4 class="text-sm font-bold text-amber-600 dark:text-amber-400 mb-2 flex items-center space-x-1.5">
+                      <i data-lucide="palette" class="w-4 h-4"></i>
+                      <span>Giá trị nghệ thuật</span>
+                    </h4>
+                    <p id="detail-lesson-art" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"></p>
+                  </div>
+                </div>
+
+                <!-- Interactive Mindmap Visualizer -->
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-bold uppercase text-slate-400 tracking-wider flex items-center space-x-1.5">
+                      <i data-lucide="git-branch" class="w-4 h-4"></i>
+                      <span>Sơ đồ tư duy bài giảng</span>
+                    </h3>
+                    <span class="text-xs text-slate-400 font-semibold italic flex items-center space-x-1">
+                      <i data-lucide="info" class="w-3.5 h-3.5 inline"></i>
+                      <span>Click các nhánh để thu phóng</span>
+                    </span>
+                  </div>
+                  
+                  <!-- Sơ đồ tư duy bằng CSS/JS tương tác -->
+                  <div class="border border-slate-200/50 dark:border-slate-800/50 bg-white dark:bg-slate-950 rounded-2xl p-4 sm:p-6 overflow-hidden relative shadow-inner min-h-[300px]">
+                    <div id="mindmap-canvas" class="flex flex-col items-center justify-center space-y-4">
+                      <!-- Rendered by JS -->
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Empty state when no lesson selected -->
+              <div id="lesson-empty-state" class="glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-12 text-center shadow-sm flex flex-col items-center justify-center min-h-[400px]">
+                <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 mb-4">
+                  <i data-lucide="book" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Vui lòng chọn bài học</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm">Chọn một tác phẩm bên cạnh để bắt đầu học, xem tóm tắt và sơ đồ tư duy tương tác.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Exams List -->
+        <div id="tab-exams-content" class="hidden animate-fade-in">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="exams-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  
+  <script>
+    // Logic riêng cho trang khối lớp
+    let selectedClass = 12; // Mặc định
+    let activeLessonId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Phân tích tham số URL lớp học (?class=10|11|12)
+      const urlParams = new URLSearchParams(window.location.search);
+      const classParam = parseInt(urlParams.get("class"));
+      if (classParam === 10 || classParam === 11 || classParam === 12) {
+        selectedClass = classParam;
+      }
+      
+      // Cập nhật tiêu đề trang
+      document.getElementById("grade-title").innerText = `Ngữ văn lớp ${selectedClass}`;
+      document.title = `Chương trình Ngữ Văn Lớp ${selectedClass} - Ngữ Văn 4.0`;
+      
+      if (selectedClass === 12) {
+        document.getElementById("grade-desc").innerText = "Trọng tâm ôn luyện kì thi tốt nghiệp THPT Quốc gia với các tác phẩm kinh điển hiện đại Việt Nam.";
+      } else if (selectedClass === 11) {
+        document.getElementById("grade-desc").innerText = "Chương trình chuyên sâu về các thể loại Truyện ngắn Lãng mạn, Truyện ngắn Hiện thực và Kịch tiêu biểu.";
+      } else if (selectedClass === 10) {
+        document.getElementById("grade-desc").innerText = "Tìm hiểu thế giới Sử thi dân gian hào hùng, các tác phẩm Thơ chữ Hán, chữ Nôm trung đại đặc sắc.";
+      }
+
+      // 2. Tải danh sách bài học và danh sách đề thi
+      loadLessonsList();
+      loadExamsList();
+    });
+
+    // Chuyển đổi TAB
+    function switchTab(tab) {
+      const lessonsBtn = document.getElementById("tab-lessons-btn");
+      const examsBtn = document.getElementById("tab-exams-btn");
+      const lessonsContent = document.getElementById("tab-lessons-content");
+      const examsContent = document.getElementById("tab-exams-content");
+
+      if (tab === "lessons") {
+        lessonsBtn.className = "px-6 py-3 text-sm font-bold border-b-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 flex items-center space-x-2 shrink-0 transition-colors";
+        examsBtn.className = "px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 flex items-center space-x-2 shrink-0 transition-colors";
+        lessonsContent.classList.remove("hidden");
+        examsContent.classList.add("hidden");
+      } else {
+        examsBtn.className = "px-6 py-3 text-sm font-bold border-b-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 flex items-center space-x-2 shrink-0 transition-colors";
+        lessonsBtn.className = "px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 flex items-center space-x-2 shrink-0 transition-colors";
+        examsContent.classList.remove("hidden");
+        lessonsContent.classList.add("hidden");
+      }
+    }
+
+    // Kết xuất Danh sách Bài học
+    function loadLessonsList() {
+      const container = document.getElementById("lessons-list");
+      const lessons = NGU_VAN_DATA.lessons[selectedClass] || [];
+      const stats = getUserStats();
+
+      if (lessons.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-sm">Chưa có bài học cho khối lớp này.</p>`;
+        return;
+      }
+
+      container.innerHTML = lessons.map(lesson => {
+        const isCompleted = stats.completedLessons.includes(lesson.id);
+        
+        return `
+          <button onclick="selectLesson('${lesson.id}')" id="lesson-btn-${lesson.id}"
+            class="w-full text-left p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white dark:bg-slate-900 shadow-sm hover:border-emerald-500/30 dark:hover:border-emerald-500/20 transition-all duration-200 flex items-center justify-between group">
+            <div class="space-y-1">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${lesson.type}</span>
+              <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">${lesson.title}</h3>
+              <p class="text-xs text-slate-400">${lesson.author}</p>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <span id="lesson-badge-${lesson.id}" class="text-[10px] px-2 py-0.5 rounded-full font-semibold ${isCompleted ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'}">
+                ${isCompleted ? 'Đã học' : 'Chưa học'}
+              </span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      // Render lại icon Lucide
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+
+    // Chọn hiển thị Chi tiết Bài học
+    function selectLesson(lessonId) {
+      activeLessonId = lessonId;
+      const lessons = NGU_VAN_DATA.lessons[selectedClass] || [];
+      const lesson = lessons.find(l => l.id === lessonId);
+
+      if (!lesson) return;
+
+      // Xóa class active cũ và gán vào nút mới
+      document.querySelectorAll("[id^='lesson-btn-']").forEach(btn => {
+        btn.classList.remove("border-emerald-500", "dark:border-emerald-500", "ring-1", "ring-emerald-500");
+      });
+      const activeBtn = document.getElementById(`lesson-btn-${lessonId}`);
+      if (activeBtn) {
+        activeBtn.classList.add("border-emerald-500", "dark:border-emerald-500", "ring-1", "ring-emerald-500");
+      }
+
+      // Hiện nội dung ẩn trạng thái trống
+      document.getElementById("lesson-empty-state").classList.add("hidden");
+      const detailContainer = document.getElementById("lesson-detail-container");
+      detailContainer.classList.remove("hidden");
+
+      // Nạp dữ liệu văn bản
+      document.getElementById("detail-lesson-type").innerText = lesson.type;
+      document.getElementById("detail-lesson-title").innerText = lesson.title;
+      document.getElementById("detail-lesson-author").innerText = lesson.author;
+      document.getElementById("detail-lesson-year").innerText = lesson.year || "Không xác định";
+      document.getElementById("detail-lesson-summary").innerText = lesson.summary;
+      
+      document.getElementById("detail-lesson-content").innerText = lesson.coreValues.content;
+      document.getElementById("detail-lesson-art").innerText = lesson.coreValues.art;
+
+      // Cập nhật trạng thái nút hoàn thành học tập
+      updateCompleteButtonState(lessonId);
+
+      // Render Sơ đồ tư duy
+      renderMindmap(lesson.mindmap);
+
+      // Tạo lại icon
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+
+    // Cập nhật trạng thái nút đã học xong
+    function updateCompleteButtonState(lessonId) {
+      const stats = getUserStats();
+      const isCompleted = stats.completedLessons.includes(lessonId);
+      
+      const emptyIcon = document.getElementById("complete-icon-empty");
+      const checkedIcon = document.getElementById("complete-icon-checked");
+      const text = document.getElementById("complete-btn-text");
+      const btn = document.getElementById("complete-btn");
+
+      if (isCompleted) {
+        emptyIcon.classList.add("hidden");
+        checkedIcon.classList.remove("hidden");
+        text.innerText = "Đã học xong";
+        btn.className = "inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold border border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition-all";
+      } else {
+        emptyIcon.classList.remove("hidden");
+        checkedIcon.classList.add("hidden");
+        text.innerText = "Đánh dấu đã học";
+        btn.className = "inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300 transition-all";
+      }
+    }
+
+    // Tải hành động đổi trạng thái học tập
+    function toggleCurrentLessonCompletion() {
+      if (!activeLessonId) return;
+
+      const stats = toggleLessonCompletion(activeLessonId);
+      
+      // 1. Cập nhật nút
+      updateCompleteButtonState(activeLessonId);
+      
+      // 2. Cập nhật badge trên danh sách nút bài học
+      const badge = document.getElementById(`lesson-badge-${activeLessonId}`);
+      if (badge) {
+        const isCompleted = stats.completedLessons.includes(activeLessonId);
+        badge.className = `text-[10px] px-2 py-0.5 rounded-full font-semibold ${isCompleted ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'}`;
+        badge.innerText = isCompleted ? 'Đã học' : 'Chưa học';
+      }
+    }
+
+    // Vẽ Sơ đồ tư duy dạng Cây Tương tác
+    function renderMindmap(mindmapData) {
+      const container = document.getElementById("mindmap-canvas");
+      if (!mindmapData) {
+        container.innerHTML = `<p class="text-slate-400 text-xs italic">Không có sơ đồ tư duy cho tác phẩm này.</p>`;
+        return;
+      }
+
+      // Xây dựng cây trực quan bằng cấu trúc HTML lồng nhau sang trọng
+      function createNodeHtml(node, depth = 0) {
+        const isRoot = depth === 0;
+        const colorClass = isRoot 
+          ? "bg-gradient-to-tr from-emerald-600 to-teal-500 text-white font-extrabold shadow-md shadow-emerald-500/10 text-sm" 
+          : (depth === 1 
+              ? "bg-slate-100 dark:bg-slate-900 border border-emerald-500/30 text-slate-800 dark:text-slate-200 font-bold text-xs" 
+              : "bg-slate-50/60 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/30 text-slate-600 dark:text-slate-400 text-[11px]");
+        
+        let childrenHtml = "";
+        if (node.children && node.children.length > 0) {
+          childrenHtml = `
+            <div class="flex flex-col sm:flex-row justify-center items-stretch gap-4 mt-4 w-full relative">
+              ${node.children.map(child => `
+                <div class="flex flex-col items-center flex-1 relative pt-2">
+                  <!-- Đường line nối (mô phỏng trên màn hình lớn) -->
+                  <div class="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-slate-200 dark:bg-slate-800"></div>
+                  ${createNodeHtml(child, depth + 1)}
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        return `
+          <div class="flex flex-col items-center w-full">
+            <div class="mindmap-node max-w-[240px] text-center px-4 py-2.5 rounded-xl ${colorClass} cursor-pointer hover:scale-105 active:scale-95 duration-200 z-10">
+              ${node.name}
+            </div>
+            ${childrenHtml}
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="w-full flex flex-col items-center overflow-x-auto p-4">
+          ${createNodeHtml(mindmapData)}
+        </div>
+      `;
+    }
+
+    // Kết xuất Danh sách Đề thi tương ứng khối lớp
+    function loadExamsList() {
+      const container = document.getElementById("exams-list");
+      const exams = NGU_VAN_DATA.exams.filter(e => e.grade === selectedClass) || [];
+
+      if (exams.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center">
+            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 mx-auto mb-3">
+              <i data-lucide="file-warning" class="w-6 h-6"></i>
+            </div>
+            <p class="text-slate-400 text-sm">Chưa có đề thi trắc nghiệm riêng cho khối lớp này.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = exams.map(exam => {
+        let diffColor = "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300";
+        if (exam.difficulty === "Dễ") diffColor = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400";
+        else if (exam.difficulty === "Trung bình") diffColor = "bg-amber-100 text-amber-800 dark:bg-amber-950/30 dark:text-amber-400";
+        else if (exam.difficulty === "Khó") diffColor = "bg-red-100 text-red-800 dark:bg-red-950/30 dark:text-red-400";
+
+        return `
+          <div class="glass-effect rounded-2xl border border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between hover:shadow-lg hover:border-emerald-500/20 dark:hover:border-emerald-500/20 transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${diffColor}">
+                  ${exam.difficulty}
+                </span>
+                <span class="text-xs font-semibold text-slate-400 flex items-center space-x-1">
+                  <i data-lucide="users" class="w-3.5 h-3.5 inline"></i>
+                  <span>${exam.attempts.toLocaleString()} lượt</span>
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-2 min-h-[3.5rem]">${exam.title}</h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mb-4 flex items-center space-x-2">
+                <span>Khối ${exam.grade}</span>
+                <span>•</span>
+                <span>${exam.questionsCount} câu hỏi</span>
+                <span>•</span>
+                <span>${exam.duration} phút</span>
+              </p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề ôn luyện chất lượng cao bám sát cấu trúc đề thi THPT.'}</p>
+            </div>
+            <a href="quiz.html?examId=${exam.id}" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-500/10 transition-all active:scale-95">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>Bắt đầu làm bài</span>
+            </a>
+          </div>
+        `;
+      }).join('');
+
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+  </script>
+</body>
+</html>

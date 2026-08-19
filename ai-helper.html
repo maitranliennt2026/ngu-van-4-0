@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trợ lý Phân tích Văn học AI - Ngữ Văn 4.0</title>
+  <meta name="description" content="Trải nghiệm trợ lý ảo phân tích tác phẩm Ngữ Văn thông minh. Hỗ trợ soạn dàn ý bài viết, giải đáp nhận định lý luận văn học nhanh chóng.">
+  
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind v4 Custom Style Config -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary-emerald: #10b981;
+      --color-primary-teal: #14b8a6;
+      --color-accent-amber: #f59e0b;
+      --font-serif-display: "Playfair Display", serif;
+      --font-sans-body: "Plus Jakarta Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- Main Chat Container -->
+  <main class="flex-grow flex flex-col items-center justify-center p-4 py-8">
+    <div class="w-full max-w-5xl h-[80vh] flex flex-col rounded-3xl border border-slate-200/50 dark:border-slate-800/50 glass-effect shadow-2xl overflow-hidden animate-fade-in">
+      
+      <!-- Chat Header -->
+      <div class="px-6 py-4 bg-gradient-to-r from-emerald-800 to-slate-900 dark:from-emerald-950/80 dark:to-slate-950/80 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-md">
+            <i data-lucide="sparkles" class="w-5 h-5 animate-pulse-glow"></i>
+          </div>
+          <div>
+            <h1 class="text-sm sm:text-base font-extrabold font-serif-title tracking-wide">Trợ lý Văn học AI 4.0</h1>
+            <span class="text-[10px] text-emerald-300 flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block mr-1"></span>Mô phỏng máy học phân tích trực tuyến</span>
+          </div>
+        </div>
+        
+        <!-- Info badge -->
+        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+          Demo Chuyên đề
+        </span>
+      </div>
+
+      <!-- Chat workspace split (Left: Prompts, Right: Conversations) -->
+      <div class="flex-grow flex overflow-hidden">
+        
+        <!-- Sidebar: Prompts List (Hidden on small screens) -->
+        <div class="hidden md:flex md:w-80 flex-col border-r border-slate-200/50 dark:border-slate-800/30 bg-slate-100/50 dark:bg-slate-950/20 p-4 space-y-4">
+          <h3 class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Gợi ý phân tích nhanh</h3>
+          
+          <button onclick="askPreset('tay-tien-1', 'Thiên nhiên Tây Bắc hiểm trở & thơ mộng')" 
+            class="w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-xs font-semibold transition-all duration-200 group">
+            <div class="flex items-start space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all mt-0.5"></i>
+              <span class="text-slate-700 dark:text-slate-200">Thiên nhiên Tây Bắc hiểm trở & thơ mộng (Tây Tiến)</span>
+            </div>
+          </button>
+
+          <button onclick="askPreset('vcap-1', 'Sức sống tiềm tàng đêm tình mùa xuân')" 
+            class="w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-xs font-semibold transition-all duration-200 group">
+            <div class="flex items-start space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all mt-0.5"></i>
+              <span class="text-slate-700 dark:text-slate-200">Sức sống tiềm tàng của Mị trong đêm tình mùa xuân (Vợ chồng A Phủ)</span>
+            </div>
+          </button>
+
+          <button onclick="askPreset('song-1', 'Ý nghĩa nhan đề bài thơ Sóng')" 
+            class="w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-xs font-semibold transition-all duration-200 group">
+            <div class="flex items-start space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all mt-0.5"></i>
+              <span class="text-slate-700 dark:text-slate-200">Ý nghĩa nhan đề bài thơ Sóng (Xuân Quỳnh)</span>
+            </div>
+          </button>
+
+          <div class="flex-grow"></div>
+          <div class="p-3 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl text-[10px] text-slate-400 leading-normal flex items-start space-x-2">
+            <i data-lucide="info" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+            <span>Hệ thống sử dụng các mẫu dữ liệu phân tích văn học cao cấp, phản hồi tự động lập tức theo từ khóa.</span>
+          </div>
+        </div>
+
+        <!-- Main Chat Panel -->
+        <div class="flex-grow flex flex-col overflow-hidden bg-white dark:bg-slate-900">
+          
+          <!-- Conversation Messages Box -->
+          <div class="flex-grow overflow-y-auto p-6 space-y-6" id="chat-messages-box">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+          <!-- Typing Indicator (Hidden by default) -->
+          <div id="typing-indicator" class="hidden px-6 py-3 bg-slate-50 dark:bg-slate-950/20 flex items-center space-x-3 text-xs text-slate-400 font-semibold">
+            <div class="flex space-x-1">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce"></span>
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+            </div>
+            <span>Trợ lý AI đang phân tích dữ liệu văn học...</span>
+          </div>
+
+          <!-- Quick Actions on mobile screen -->
+          <div class="md:hidden flex overflow-x-auto whitespace-nowrap p-3 gap-2 bg-slate-50 dark:bg-slate-950/20 border-t border-slate-200/40 dark:border-slate-800/30">
+            <button onclick="askPreset('tay-tien-1', 'Dàn ý thiên nhiên Tây Bắc')" class="px-3 py-1.5 text-[10px] font-bold rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">Dàn ý Tây Tiến</button>
+            <button onclick="askPreset('vcap-1', 'Sức sống tiềm tàng của Mị')" class="px-3 py-1.5 text-[10px] font-bold rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">Mị đêm tình xuân</button>
+            <button onclick="askPreset('song-1', 'Ý nghĩa nhan đề Sóng')" class="px-3 py-1.5 text-[10px] font-bold rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">Nhan đề Sóng</button>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="p-4 bg-slate-50 dark:bg-slate-950/40 border-t border-slate-200/40 dark:border-slate-800/30">
+            <form id="chat-form" onsubmit="handleUserSubmit(event)" class="relative flex items-center">
+              <input type="text" id="chat-input" placeholder="Hãy hỏi về Tây Tiến, Sóng, Vợ chồng A Phủ..." autocomplete="off"
+                class="block w-full pl-5 pr-14 py-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 dark:focus:ring-emerald-400/50 placeholder-slate-400">
+              <button type="submit" 
+                class="absolute right-2.5 p-2.5 rounded-xl text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-500/10 hover:shadow-lg transition-all active:scale-95 duration-150 cursor-pointer">
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+
+  <script>
+    const chatBox = document.getElementById("chat-messages-box");
+    const chatInput = document.getElementById("chat-input");
+    const typingIndicator = document.getElementById("typing-indicator");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Chào mừng đầu tiên khi mở trang
+      appendMessage("ai", NGU_VAN_DATA.aiReplies.hello);
+    });
+
+    // Tạo tin nhắn mới trên khung chat
+    function appendMessage(sender, text) {
+      const msgDiv = document.createElement("div");
+      
+      if (sender === "ai") {
+        msgDiv.className = "flex items-start space-x-3 max-w-[85%] animate-fade-in";
+        msgDiv.innerHTML = `
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-md">
+            AI
+          </div>
+          <div class="bg-slate-100 dark:bg-slate-800/60 border border-slate-200/20 dark:border-slate-800/30 text-slate-800 dark:text-slate-200 p-4 rounded-3xl rounded-tl-none text-xs leading-relaxed space-y-3 shadow-sm markdown-body">
+            ${formatMarkdown(text)}
+          </div>
+        `;
+      } else {
+        msgDiv.className = "flex items-start space-x-3 max-w-[85%] justify-end self-end ml-auto animate-fade-in";
+        msgDiv.innerHTML = `
+          <div class="bg-emerald-600 text-white p-4 rounded-3xl rounded-tr-none text-xs leading-relaxed shadow-sm">
+            ${text}
+          </div>
+          <div class="w-9 h-9 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs font-bold shrink-0">
+            HS
+          </div>
+        `;
+      }
+
+      chatBox.appendChild(msgDiv);
+      
+      // Cuộn mượt xuống cuối khung chat
+      chatBox.scrollTo({
+        top: chatBox.scrollHeight,
+        behavior: "smooth"
+      });
+
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+
+    // Định dạng markdown cơ bản cho text
+    function formatMarkdown(text) {
+      // Chuyển tiêu đề h3
+      let formatted = text.replace(/^### (.*$)/gim, '<h3 class="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-2">$1</h3>');
+      
+      // Chuyển đậm **text**
+      formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900 dark:text-white">$1</strong>');
+      
+      // Chuyển in nghiêng *text*
+      formatted = formatted.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+      
+      // Chuyển danh sách
+      formatted = formatted.replace(/^\s*-\s*(.*$)/gim, '<li class="ml-4 list-disc">$1</li>');
+      
+      // Chuyển các dòng có số 1. 2. 3.
+      formatted = formatted.replace(/^\s*\d\.\s*(.*$)/gim, '<div class="pl-2 font-bold text-slate-800 dark:text-slate-200 mt-2">$0</div>');
+
+      // Chuyển xuống dòng
+      formatted = formatted.replace(/\n/g, '<br>');
+
+      return formatted;
+    }
+
+    // Xử lý gửi tin nhắn của học sinh
+    function handleUserSubmit(event) {
+      event.preventDefault();
+      
+      const prompt = chatInput.value.trim();
+      if (!prompt) return;
+
+      // 1. Thêm tin nhắn của học sinh
+      appendMessage("user", prompt);
+      chatInput.value = "";
+
+      // 2. Chạy tìm kiếm câu trả lời dựa trên từ khóa
+      generateAIResponse(prompt);
+    }
+
+    // Lựa chọn nhấn nút câu hỏi nhanh bên cột trái
+    function askPreset(presetKey, visualQuestion) {
+      appendMessage("user", `Hỏi Trợ lý AI: ${visualQuestion}`);
+      generateAIResponseByKey(presetKey);
+    }
+
+    function generateAIResponse(userInput) {
+      showTyping(true);
+
+      const query = userInput.toLowerCase();
+      let replyKey = null;
+
+      // Tìm từ khóa
+      if (query.includes("tây tiến") || query.includes("tay tien") || query.includes("quang dũng")) {
+        replyKey = "tay-tien-1";
+      } else if (query.includes("vợ chồng a phủ") || query.includes("vo chong a phu") || query.includes("mị") || query.includes("a phủ")) {
+        replyKey = "vcap-1";
+      } else if (query.includes("sóng") || query.includes("song") || query.includes("xuân quỳnh")) {
+        replyKey = "song-1";
+      }
+
+      setTimeout(() => {
+        showTyping(false);
+        if (replyKey) {
+          appendMessage("ai", NGU_VAN_DATA.aiReplies[replyKey]);
+        } else {
+          // Trả lời mặc định khi từ khóa không khớp
+          const defaultReply = `Cảm ơn bạn đã hỏi! Câu hỏi của bạn rất hay: "*${userInput}*". 
+          Tuy nhiên, trong bản demo giới hạn của **Ngữ Văn 4.0**, mình hiện mới hỗ trợ dữ liệu trả lời chi tiết cho 3 tác phẩm trọng tâm:
+          1. **Tây Tiến** (Từ khóa: *tây tiến*)
+          2. **Vợ chồng A Phủ** (Từ khóa: *mị, vợ chồng a phủ*)
+          3. **Sóng - Xuân Quỳnh** (Từ khóa: *sóng*)
+          
+          Bạn hãy thử gõ các từ khóa trên hoặc bấm chọn danh sách **Gợi ý phân tích nhanh** ở bên cạnh để xem các dàn ý chi tiết nhé!`;
+          
+          appendMessage("ai", defaultReply);
+        }
+      }, 1200);
+    }
+
+    function generateAIResponseByKey(key) {
+      showTyping(true);
+
+      setTimeout(() => {
+        showTyping(false);
+        const reply = NGU_VAN_DATA.aiReplies[key] || "Xin lỗi, hiện tại không tìm thấy dữ liệu phản hồi cho mẫu này.";
+        appendMessage("ai", reply);
+      }, 1200);
+    }
+
+    function showTyping(isVisible) {
+      if (isVisible) {
+        typingIndicator.classList.remove("hidden");
+        chatBox.scrollTo({
+          top: chatBox.scrollHeight,
+          behavior: "smooth"
+        });
+      } else {
+        typingIndicator.classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
