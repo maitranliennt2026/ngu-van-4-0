@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ngân hàng đề thi trắc nghiệm Ngữ Văn - Ngữ Văn 4.0</title>
-  <meta name="description" content="Khám phá ngân hàng đề thi trắc nghiệm Ngữ văn phong phú. Hỗ trợ lọc theo khối lớp 10, 11, 12, độ khó và tìm kiếm nhanh chóng.">
+  <title>Ngân hàng đề thi trắc nghiệm Ngữ Văn THCS - Ngữ Văn 4.0</title>
+  <meta name="description" content="Khám phá ngân hàng đề thi trắc nghiệm Ngữ văn THCS phong phú. Hỗ trợ lọc theo khối lớp 6, 7, 8, 9, độ khó và tìm kiếm nhanh chóng.">
   
   <!-- Tailwind CSS v4 Browser CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -35,20 +35,20 @@
       <!-- Page Header -->
       <div class="mb-10 text-center md:text-left md:flex md:items-center md:justify-between border-b border-slate-200/50 dark:border-slate-800/30 pb-6">
         <div>
-          <h1 class="text-3xl font-extrabold font-serif-title tracking-tight text-slate-900 dark:text-white">Ngân hàng đề thi</h1>
-          <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Hệ thống đề thi trắc nghiệm khách quan đa dạng, cập nhật liên tục bám sát kì thi tốt nghiệp THPT Quốc gia.</p>
+          <h1 class="text-3xl font-extrabold font-serif-title tracking-tight text-slate-900 dark:text-white">Ngân hàng đề thi THCS</h1>
+          <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Hệ thống đề thi trắc nghiệm khách quan đa dạng, cập nhật liên tục bám sát chương trình ôn thi và tuyển sinh vào lớp 10.</p>
         </div>
         
         <!-- Live statistics -->
         <div class="mt-6 md:mt-0 flex items-center justify-center space-x-6 text-xs font-semibold bg-white dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/50 p-4 rounded-2xl shadow-sm">
           <div class="text-center">
             <span class="block text-slate-400">Tổng số đề</span>
-            <span class="text-lg font-bold text-emerald-500" id="total-exams-badge">3</span>
+            <span class="text-lg font-bold text-emerald-500" id="total-exams-badge">2</span>
           </div>
           <div class="w-px h-8 bg-slate-200 dark:bg-slate-800"></div>
           <div class="text-center">
             <span class="block text-slate-400">Tổng số câu hỏi</span>
-            <span class="text-lg font-bold text-teal-500" id="total-questions-badge">25</span>
+            <span class="text-lg font-bold text-teal-500" id="total-questions-badge">10</span>
           </div>
           <div class="w-px h-8 bg-slate-200 dark:bg-slate-800"></div>
           <div class="text-center">
@@ -71,17 +71,18 @@
               class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500">
           </div>
 
-          <!-- Class Selector -->
+          <!-- Class Selector (6, 7, 8, 9) -->
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
             </span>
             <select id="filter-class" onchange="applyFilters()" 
               class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 appearance-none cursor-pointer">
-              <option value="all">Tất cả Khối lớp</option>
-              <option value="12">Lớp 12</option>
-              <option value="11">Lớp 11</option>
-              <option value="10">Lớp 10</option>
+              <option value="all">Tất cả Khối lớp THCS</option>
+              <option value="9">Lớp 9</option>
+              <option value="8">Lớp 8</option>
+              <option value="7">Lớp 7</option>
+              <option value="6">Lớp 6</option>
             </select>
           </div>
 
@@ -139,16 +140,13 @@
   <script src="assets/js/common.js"></script>
 
   <script>
-    // Logic quản lý bộ lọc
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Phân tích tham số tìm kiếm từ trang chủ (nếu có)
       const urlParams = new URLSearchParams(window.location.search);
       const searchQuery = urlParams.get("search");
       if (searchQuery) {
         document.getElementById("filter-search").value = searchQuery;
       }
 
-      // Cập nhật thống kê số lượng đề/câu hỏi
       const totalExams = NGU_VAN_DATA.exams.length;
       let totalQuestions = 0;
       NGU_VAN_DATA.exams.forEach(e => {
@@ -157,7 +155,6 @@
       document.getElementById("total-exams-badge").innerText = totalExams;
       document.getElementById("total-questions-badge").innerText = totalQuestions;
 
-      // 2. Chạy kết xuất lần đầu
       applyFilters();
     });
 
@@ -167,10 +164,8 @@
       const diffVal = document.getElementById("filter-difficulty").value;
       const sortVal = document.getElementById("filter-sort").value;
 
-      // Bắt đầu lọc từ data.js
       let filteredExams = [...NGU_VAN_DATA.exams];
 
-      // 1. Lọc theo tìm kiếm từ khóa
       if (searchVal) {
         filteredExams = filteredExams.filter(exam => 
           exam.title.toLowerCase().includes(searchVal) || 
@@ -178,17 +173,14 @@
         );
       }
 
-      // 2. Lọc theo Khối lớp
       if (classVal !== "all") {
         filteredExams = filteredExams.filter(exam => exam.grade === parseInt(classVal));
       }
 
-      // 3. Lọc theo Độ khó
       if (diffVal !== "all") {
         filteredExams = filteredExams.filter(exam => exam.difficulty === diffVal);
       }
 
-      // 4. Sắp xếp kết quả
       if (sortVal === "popular") {
         filteredExams.sort((a, b) => b.attempts - a.attempts);
       } else if (sortVal === "rating") {
@@ -199,7 +191,6 @@
         filteredExams.sort((a, b) => b.duration - a.duration);
       }
 
-      // Render danh sách
       renderExamsList(filteredExams);
     }
 
@@ -242,7 +233,7 @@
                 <span>•</span>
                 <span>${exam.duration} phút</span>
               </p>
-              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề kiểm tra ôn luyện chất lượng cao phục vụ đánh giá năng lực văn học.'}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-6">${exam.description || 'Đề kiểm tra ôn luyện chất lượng cao bám sát chương trình THCS.'}</p>
             </div>
             <div class="space-y-3">
               <div class="flex justify-between items-center text-xs font-semibold text-slate-400 px-1">
