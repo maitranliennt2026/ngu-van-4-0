@@ -1,83 +1,78 @@
 // ==========================================
 // KHO DỮ LIỆU NGỮ VĂN 4.0 - THCS (LỚP 6, 7, 8, 9)
-// Sách Kết nối tri thức và các bộ sách mới
+// Chuẩn chương trình GDPT mới (Kết nối tri thức)
 // ==========================================
 
 const NGU_VAN_DATA = {
-  // Danh sách bài học và tác phẩm chia theo khối lớp THCS
+  // Danh sách bài học và tác phẩm chia theo khối lớp THCS chuẩn chương trình mới
   lessons: {
     9: [
       {
-        id: "dong-chi",
-        title: "Đồng chí",
-        author: "Chính Hữu",
+        id: "anh-trang",
+        title: "Ánh trăng",
+        author: "Nguyễn Duy",
         type: "Thơ",
-        year: "1948",
-        summary: "Bài thơ ca ngợi tình đồng chí, đồng đội gắn bó keo sơn, thắm thiết giữa những người lính cách marque trong những năm đầu cuộc kháng chiến chống Pháp.",
+        year: "1978",
+        summary: "Bài thơ là lời tự nhắc nhở về những năm tháng gian lao của cuộc kháng chiến, qua đó thái độ sống ân nghĩa, thủy chung với quá khứ.",
         coreValues: {
-          content: "Khắc họa vẻ đẹp giản dị, chân thực của tình đồng chí, đồng đội gắn liền với tinh thần yêu nước và ý chí chiến đấu kiên cường.",
-          art: "Thể thơ tự do linh hoạt; hình ảnh thơ bình dị, cô đọng, giàu sức gợi cảm; chi tiết chọn lọc mang tính biểu tượng cao."
+          content: "Thể hiện thái độ sống uống nước nhớ nguồn, ân nghĩa thủy chung cùng quá khứ gian lao và nghĩa tình.",
+          art: "Thể thơ năm chữ nhịp nhàng; giọng điệu tâm tình, tự nhiên; kết hợp giữa tự sự và trữ tình; hình ảnh thơ mang ý nghĩa biểu tượng sâu sắc."
         },
         mindmap: {
-          root: "Đồng chí (Chính Hữu)",
+          root: "Ánh trăng (Nguyễn Duy)",
           children: [
             {
-              name: "Cơ sở hình thành tình đồng chí",
+              name: "Quá khứ nghĩa tình",
               children: [
-                { name: "Cùng chung cảnh ngộ nghèo khó, xuất thân từ nông dân ('Nước mặn đồng chua, đất cày lên sỏi đá')" },
-                { name: "Cùng chung lý tưởng chiến đấu vì Tổ quốc ('Súng bên súng, đầu sát bên đầu')" }
+                { name: "Gắn bó với thiên nhiên, với vầng trăng tri kỷ trong những năm tháng gian khổ ở chiến trường" }
               ]
             },
             {
-              name: "Biểu hiện của tình đồng chí",
+              name: "Hiện tại đổi thay",
               children: [
-                { name: "Sẻ chia gian lao, thiếu thốn nơi chiến trường ('Áo anh rách vai, quần tôi có vài mảnh')" },
-                { name: "Thấu hiểu tâm tư, nỗi lòng của nhau ('Thương nhau tay nắm bàn chân')" },
-                { name: "Sự gắn kết trong đêm canh gác ('Đêm rét chung chăn thành đôi tri kỷ')" }
+                { name: "Sống trong thành phố hiện đại, đầy đủ tiện nghi, con người dễ vô tình quên đi quá khứ" }
               ]
             },
             {
-              name: "Biểu tượng khép lại bài thơ",
+              name: "Bước ngoặt tình huống và thức tỉnh",
               children: [
-                { name: "Hình ảnh 'Đầu súng trăng treo': Sự kết hợp giữa hiện thực (súng) và lãng mạn (trăng)" },
-                { name: "Biểu tượng cho người lính, cho chất thơ của cuộc đời người chiến sĩ" }
+                { name: "Đèn điện tắt đột ngột, vầng trăng xuất hiện vẹn nguyên, nhân vật giật mình vỡ lẽ, đối diện với chính mình" }
               ]
             }
           ]
         }
       },
       {
-        id: "bep-lua",
-        title: "Bếp lửa",
-        author: "Bế Văn Kỳ",
-        type: "Thơ",
-        year: "1963",
-        summary: "Qua hình ảnh bếp lửa, bài thơ gợi lại những kỷ niệm đầy xúc động về tình bà cháu và lòng kính yêu, biết ơn sâu sắc của người cháu đối với người bà.",
+        id: "nhung-ngoi-sao-xa-xoi",
+        title: "Những ngôi sao xa xoi",
+        author: "Lê Minh Khuê",
+        type: "Truyện ngắn",
+        year: "1971",
+        summary: "Tác phẩm ca ngợi vẻ đẹp dũng cảm, tinh thần lạc quan và tình đồng đội gắn bó của những cô gái thanh niên xung phong trên tuyến đường Trường Sơn.",
         coreValues: {
-          content: "Thể hiện tình cảm gia đình thiêng liêng, lòng biết ơn và đạo lý 'uống nước nhớ nguồn' đối với thế hệ đi trước.",
-          art: "Kết hợp nhuần nhuyễn giữa miêu tả, biểu cảm, tự sự và bình luận; hình ảnh 'bếp lửa' mang ý nghĩa biểu tượng xuyên suốt."
+          content: "Khắc họa thành công vẻ đẹp anh hùng, sự dũng cảm và tâm hồn trong sáng, mộng mơ của tuổi trẻ Việt Nam thời kháng chiến chống Mỹ.",
+          art: "Nghệ thuật miêu tả tâm lý nhân vật sắc sảo qua ngôi kể thứ nhất; ngôn ngữ sinh động, trẻ trung, đậm chất lính."
         },
         mindmap: {
-          root: "Bếp lửa (Bế Văn Kỳ)",
+          root: "Những ngôi sao xa xoi (Lê Minh Khuê)",
           children: [
             {
-              name: "Hình ảnh bếp lửa khởi nguồn",
+              name: "Hoàn cảnh chiến đấu",
               children: [
-                { name: "Khơi ngọn lửa của tình bà cháu, của sự sống và niềm tin bền bỉ" }
+                { name: "Trọng điểm trên tuyến đường Trường Sơn, máy bay oanh tạc hiểm trở, công việc phá bom nguy hiểm" }
               ]
             },
             {
-              name: "Kỷ niệm tuổi thơ bên bà",
+              name: "Vẻ đẹp chung của tổ trinh sát",
               children: [
-                { name: "Năm tháng đói kém, nhọc nhằn nhưng ấm áp tình thương" },
-                { name: "Tiếng chim tu hú kêu gợi nhắc không gian quê hương thanh bình" },
-                { name: "Bà tần tảo sớm hôm, nhóm lửa nuôi cháu lớn khôn" }
+                { name: "Dũng cảm, kiên cường, tinh thần trách nhiệm cao độ với nhiệm vụ" },
+                { name: "Tình đồng đội gắn bó sâu sắc, yêu thương nhau như chị em trong nhà" }
               ]
             },
             {
-              name: "Suy ngẫm về hình ảnh người bà",
+              name: "Nét tính cách riêng của Phương Định",
               children: [
-                { name: "Bà không chỉ nhóm lửa mà còn 'nhóm' cả niềm tin, yêu thương cho con cháu" }
+                { name: "Cô gái Hà Nội xinh xắn, nhạy cảm, hay mơ mộng và rất dũng cảm khi đối mặt với cái chết" }
               ]
             }
           ]
@@ -86,31 +81,36 @@ const NGU_VAN_DATA = {
     ],
     8: [
       {
-        id: "lao-hac",
-        title: "Lão Hạc",
-        author: "Nam Cao",
+        id: "gio-lạnh-dau-mua",
+        title: "Gió lạnh đầu mùa",
+        author: "Thạch Lam",
         type: "Truyện ngắn",
-        year: "1943",
-        summary: "Tác phẩm phản ánh số phận đau thương của người nông dân nghèo trong xã hội cũ, đồng thời ngợi ca vẻ đẹp tâm hồn trong sạch, lòng tự trọng cao cả và tình cha con sâu sắc.",
+        year: "1937",
+        summary: "Câu chuyện cảm động về tình cảm nhân ái, sự sẻ chia yêu thương giữa những đứa trẻ ở một phố huyện nghèo khi mùa đông đến.",
         coreValues: {
-          content: "Tố cáo xã hội tàn nhẫn đẩy người nông dân vào đường cùng; ngợi ca nhân phẩm cao quý, lòng tự trọng và tình yêu thương con của Lão Hạc.",
-          art: "Nghệ thuật miêu tả tâm lý nhân vật sắc sảo; cốt truyện bất ngờ, giàu kịch tính; ngôi kể chân thực từ nhân vật 'ông giáo'."
+          content: "Đề cao tình người ấm áp, lòng trắc ẩn và sự sẻ chia đối với những hoàn cảnh bất hạnh trong cuộc sống.",
+          art: "Truyện ngắn giàu chất thơ; cốt truyện nhẹ nhàng; miêu tả tâm lý tinh tế, sâu lắng."
         },
         mindmap: {
-          root: "Lão Hạc (Nam Cao)",
+          root: "Gió lạnh đầu mùa (Thạch Lam)",
           children: [
             {
-              name: "Hoàn cảnh và bi kịch",
+              name: "Khung cảnh mùa đông về",
               children: [
-                { name: "Nghèo khổ, vợ mất sớm, con trai bỏ đi đồn điền cao su vì không đủ tiền cưới vợ" },
-                { name: "Buộc phải bán con chó Vàng - người bạn duy nhất để giữ lại mảnh vườn cho con" }
+                { name: "Cái lạnh đầu mùa rét mướt khắc họa rõ nét cảnh ngộ nghèo khó của trẻ em vùng quê" }
               ]
             },
             {
-              name: "Vẻ đẹp nhân phẩm",
+              name: "Hành động của Sơn và Lê",
               children: [
-                { name: "Lòng tự trọng đáng quý: Gửi gắm tiền trọn vẹn cho ông giáo để lo tang ma, kiên quyết không phạm vào tiền của con" },
-                { name: "Cái chết đau đớn, dữ dội bằng bả chó để tự vẫn nhằm giữ trọn lương tâm và tài sản" }
+                { name: "Sơn và chị Lan thương cảm khi thấy bé Cụt rách rưới, ro ro vì lạnh" },
+                { name: "Sơn quyết định lấy chiếc áo ấm của em gái đã mất đem cho bé Hiên mặc" }
+              ]
+            },
+            {
+              name: "Ý nghĩa nhân văn",
+              children: [
+                { name: "Sự ấm áp của tình người vượt lên trên cái lạnh giá của thời tiết và ranh giới giàu nghèo" }
               ]
             }
           ]
@@ -119,36 +119,29 @@ const NGU_VAN_DATA = {
     ],
     7: [
       {
-        id: "tieng-ga-trua",
-        title: "Tiếng gà trưa",
-        author: "Xuân Quỳnh",
+        id: "me",
+        title: "Mẹ",
+        author: "Đỗ Trung Quân",
         type: "Thơ",
-        year: "Thời kỳ đầu kháng chiến chống Mỹ",
-        summary: "Tiếng gà trưa đánh thức những kỷ niệm đẹp đẽ của tuổi thơ và tình cảm gia đình ấm áp, qua đó nuôi dưỡng tình yêu quê hương, đất nước trong lòng người chiến sĩ.",
+        year: "Hiện đại",
+        summary: "Bài thơ khắc họa nỗi vất vả, hy sinh thầm lặng của người mẹ vì con cái, qua đó nhắc nhở đạo lý làm con phải biết ơn và yêu thương mẹ.",
         coreValues: {
-          content: "Khơi gợi tình cảm gia đình, tình bà cháu thiêng liêng và cội nguồn yêu thương của người lính.",
-          art: "Thể thơ 5 chữ nhịp nhàng; sử dụng điệp từ 'tiếng gà trưa' làm âm hưởng chủ đạo kết nối ký ức và hiện tại."
+          content: "Tôn vinh tình mẫu tử thiêng liêng, sự hy sinh vô điều kiện của người mẹ suốt đời vì gia đình.",
+          art: "Thể thơ linh hoạt, hình ảnh mộc mạc, gần gũi, giàu sức gợi cảm xúc."
         },
         mindmap: {
-          root: "Tiếng gà trưa (Xuân Quỳnh)",
+          root: "Mẹ (Đỗ Trung Quân)",
           children: [
             {
-              name: "Khởi đầu hành trình",
+              name: "Hình ảnh người mẹ tần tảo",
               children: [
-                { name: "Tiếng gà trưa đánh thức cảm xúc của người lính trên đường hành quân" }
+                { name: "Mẹ gánh chịu mọi nhọc nhằn, giông bão cuộc đời để che chở cho con" }
               ]
             },
             {
-              name: "Kỷ niệm tuổi thơ",
+              name: "Tình cảm của con",
               children: [
-                { name: "Ổ trứng hồng tuổi thơ, hình ảnh người bà tần tảo chắt chiu" },
-                { name: "Niềm vui thơ ngây khi nghe tiếng gà nhảy ổ" }
-              ]
-            },
-            {
-              name: "Ý nghĩa hiện tại",
-              children: [
-                { name: "Chiến đấu vì những điều bình dị nhất: Vì quê hương, vì tổ ấm gia đình" }
+                { name: "Lòng biết ơn sâu sắc, sự thấu hiểu những hy sinh thầm lặng mà mẹ đã trải qua" }
               ]
             }
           ]
@@ -157,36 +150,36 @@ const NGU_VAN_DATA = {
     ],
     6: [
       {
-        id: "thanh-giong",
-        title: "Thánh Gióng",
-        author: "Truyền thuyết dân gian",
-        type: "Truyền thuyết",
+        id: "thach-sanh",
+        title: "Thạch Sanh",
+        author: "Truyện cổ tích",
+        type: "Truyện cổ tích",
         year: "Dân gian",
-        summary: "Truyền thuyết ca ngợi tinh thần yêu nước, ý chí chống giặc ngoại xâm kiên cường của nhân dân ta thông qua hình tượng vị anh hùng làng Gióng.",
+        summary: "Truyện cổ tích ca ngợi phẩm chất tốt đẹp, tài năng và lòng nhân đạo của nhân vật Thạch Sanh, đồng thời phản ánh triết lý nhân quả 'ở hiền gặp lành'.",
         coreValues: {
-          content: "Phản ánh ước mơ của nhân dân về sức mạnh đoàn kết và lòng dũng cảm chiến thắng giặc ngoại xâm.",
-          art: "Kết hợp yếu tố kỳ ảo, thần kỳ với các sự kiện lịch sử; xây dựng hình tượng anh hùng mang tầm vóc lớn lao."
+          content: "Thể hiện ước mơ của nhân dân về công lý xã hội, cái thiện chiến thắng cái ác, người hiền gặp lành.",
+          art: "Sử dụng yếu tố thần kỳ, kết cấu truyện quen thuộc của truyện cổ tích thần kỳ."
         },
         mindmap: {
-          root: "Thánh Gióng",
+          root: "Thạch Sanh",
           children: [
             {
-              name: "Sự ra đời kỳ lạ",
+              name: "Thân phận & Phẩm chất",
               children: [
-                { name: "Sinh ra từ vết chân lạ, bà mẹ mang thai 12 tháng mới sinh" }
+                { name: "Mồ côi, nghèo khó nhưng dũng cảm, thật thà, bao dung và tài năng" }
               ]
             },
             {
-              name: "Sự lớn lên thần tốc",
+              name: "Thử thách & Chiến công",
               children: [
-                { name: "Lên ba tuổi không biết nói cười, nhưng nghe tiếng sứ giả tìm người cứu nước bỗng vụt lớn thành tráng sĩ" }
+                { name: "Diệt chăn tinh, đại bàng, vạch trần bộ mặt gian ác của Lí Thông" },
+                { name: "Đánh tan quân xâm lược bằng tiếng đàn và niêu cơm thần kỳ" }
               ]
             },
             {
-              name: "Hành trình đánh giặc và bay về trời",
+              name: "Kết thúc",
               children: [
-                { name: "Cưỡi ngựa sắt, mặc giáp sắt, roi sắt dẹp tan giặc Ân" },
-                { name: "Bay về trời, để lại dấu tích là các ao hồ chiêm trũng và tre ngà" }
+                { name: "Thạch Sanh được cưới công chúa, ở hiền gặp lành, cái ác bị trừng trị thích đáng" }
               ]
             }
           ]
@@ -195,78 +188,78 @@ const NGU_VAN_DATA = {
     ]
   },
 
-  // Ngân hàng đề thi trắc nghiệm THCS
+  // Ngân hàng đề thi trắc nghiệm THCS chuẩn chương trình mới
   exams: [
     {
       id: "thcs-01",
-      title: "Đề kiểm tra Ngữ Văn Lớp 9 - Chuyên đề Thơ Hiện Đại",
+      title: "Đề khảo sát Ngữ Văn Lớp 9 - Bám sát chương trình mới (Thi vào 10)",
       grade: 9,
-      duration: 30,
+      duration: 45,
       questionsCount: 5,
-      attempts: 3420,
+      attempts: 4120,
       rating: 4.9,
       difficulty: "Trung bình",
-      description: "Đề kiểm tra hệ thống kiến thức trọng tâm các bài thơ lớp 9 như Đồng chí, Bếp lửa, giúp học sinh vững vàng kiến thức thi vào lớp 10.",
+      description: "Đề kiểm tra trắc nghiệm tổng hợp kiến thức tác phẩm trọng tâm chương trình Ngữ Văn 9 mới như Ánh trăng, Những ngôi sao xa xôi.",
       questions: [
         {
           id: 1,
-          text: "Bài thơ 'Đồng chí' của nhà thơ Chính Hữu sáng tác vào năm nào?",
+          text: "Bài thơ 'Ánh trăng' của nhà thơ Nguyễn Duy được sáng tác vào năm nào?",
           options: [
-            "A. Năm 1945",
-            "B. Năm 1948",
-            "C. Năm 1954",
-            "D. Năm 1975"
+            "A. Năm 1969",
+            "B. Năm 1975",
+            "C. Năm 1978",
+            "D. Năm 1980"
           ],
-          correctOption: 1,
-          explanation: "Bài thơ 'Đồng chí' được sáng tác vào năm 1948 tại chiến khu Việt Bắc, in trong tập thơ 'Đầu súng trăng treo' của Chính Hữu."
+          correctOption: 2,
+          explanation: "Bài thơ 'Ánh trăng' được Nguyễn Duy sáng tác năm 1978 tại thành phố Hồ Chí Minh, mang âm hưởng suy ngẫm sâu sắc về nghĩa tình quá khứ."
         },
         {
           id: 2,
-          text: "Hình tượng 'Đầu súng trăng treo' ở cuối bài thơ 'Đồng chí' mang ý nghĩa biểu tượng gì?",
+          text: "Hình ảnh 'vầng trăng' ở cuối bài thơ 'Ánh trăng' mang ý nghĩa biểu tượng gì?",
           options: [
-            "A. Sự khắc nghiệt của thời tiết ban đêm",
-            "B. Sự kết hợp hài hòa giữa hiện thực chiến đấu và chất lãng mạn trữ tình",
-            "C. Sự cô đơn của người lính khi canh gác",
-            "D. Vẻ đẹp thiên nhiên hoang sơ của núi rừng"
+            "A. Vẻ đẹp của thiên nhiên vũ trụ bao la",
+            "B. Quá khứ nghĩa tình, thiên nhiên hồn nhiên, nhân hậu và sự nghiêm khắc tự nhắc nhở bản thân",
+            "C. Ánh sáng của đèn điện trong thành phố hiện đại",
+            "D. Sự thay đổi thời tiết bất ngờ ban đêm"
           ],
           correctOption: 1,
-          explanation: "'Đầu súng trăng treo' là hình ảnh biểu tượng tuyệt đẹp kết hợp giữa súng (chiến sĩ, hiện thực) và trăng (thi sĩ, hòa bình, lãng mạn)."
+          explanation: "Vầng trăng cuối bài là biểu tượng của quá khứ gian lao, nghĩa tình thủy chung và là hiện thân của sự bao dung, nhắc nhở con người không được sống vô tình."
         },
         {
           id: 3,
-          text: "Trong bài thơ 'Bếp lửa', hình ảnh bếp lửa do ai nhóm lên?",
+          text: "Truyện ngắn 'Những ngôi sao xa xoi' của Lê Minh Khuê viết về đề tài gì?",
           options: [
-            "A. Người cháu",
-            "B. Người bà",
-            "C. Cả bà và cháu",
-            "D. Người mẹ"
+            "A. Cuộc sống của người nông dân trước cách mạng",
+            "B. Cuộc sống chiến đấu của các cô gái thanh niên xung phong trên tuyến đường Trường Sơn",
+            "C. Sinh hoạt của học sinh trong kháng chiến",
+            "D. Cuộc sống lao động ở miền biển"
           ],
-          correctOption: 2,
-          explanation: "Bếp lửa do 'một sớm mưa vui' bà nhóm, rồi bà nhóm 'mỗi sớm mai đầy', và sau này người cháu đã kế thừa để 'nhóm niềm yêu thương'."
+          correctOption: 1,
+          explanation: "Tác phẩm khắc họa vẻ đẹp dũng cảm, tinh thần lạc quan của những cô gái thanh niên xung phong làm nhiệm vụ phá bom trên tuyến đường Trường Sơn."
         },
         {
           id: 4,
-          text: "Phương thức biểu đạt chính của bài thơ 'Bếp lửa' là gì?",
+          text: "Nhân vật chính kiêm người kể chuyện trong 'Những ngôi sao xa xoi' là ai?",
           options: [
-            "A. Biểu cảm kết hợp tự sự và miêu tả",
-            "B. Tự sự kết hợp thuyết minh",
-            "C. Nghị luận kết hợp biểu cảm",
-            "D. Miêu tả kết hợp hành chính"
+            "A. Nho",
+            "B. Thao",
+            "C. Phương Định",
+            "D. Chị đội trưởng"
           ],
-          correctOption: 0,
-          explanation: "Bài thơ kết hợp nhuần nhuyễn giữa biểu cảm (bộc lộ cảm xúc) với tự sự (kể chuyện quá khứ) và miêu tả."
+          correctOption: 2,
+          explanation: "Truyện được kể qua góc nhìn và lời kể của Phương Định - một cô gái Hà Nội nhạy cảm, mơ mộng và kiên cường."
         },
         {
           id: 5,
-          text: "Tác phẩm nào sau đây cùng viết về đề tài người lính thời kỳ kháng chiến chống Pháp với 'Đồng chí'?",
+          text: "Đâu là chủ đề chính của truyện ngắn 'Gió lạnh đầu mùa' (Thạch Lam)?",
           options: [
-            "A. Bài thơ về tiểu đội xe không kính (Phạm Tiến Duật)",
-            "B. Tây Tiến (Quang Dũng)",
-            "C. Sang thu (Hữu Thỉnh)",
-            "D. Mùa xuân nho nhỏ (Thanh Hải)"
+            "A. Phê phán tầng lớp thống trị phong kiến",
+            "B. Tình cảm nhân ái, lòng trắc ẩn và sự sẻ chia ấm áp tình người",
+            "C. Ca ngợi tinh thần chiến đấu chống giặc ngoại xâm",
+            "D. Phản ánh đời sống công nhân nơi đô thị"
           ],
           correctOption: 1,
-          explanation: "'Tây Tiến' của Quang Dũng cũng là tác phẩm xuất sắc viết về người lính và tình đồng đội trong giai đoạn đầu chống Pháp."
+          explanation: "Tác phẩm đề cao tình người mộc mạc, lòng trắc ẩn của những đứa trẻ đối với người nghèo khó trong cái lạnh đầu mùa."
         }
       ]
     }
@@ -274,31 +267,29 @@ const NGU_VAN_DATA = {
 
   // Dữ liệu câu hỏi cho trợ lý văn học AI mô phỏng (THCS)
   aiReplies: {
-    hello: "Xin chào! Mình là Trợ lý Ngữ Văn AI 4.0 dành cho cấp THCS (6, 7, 8, 9) theo chương trình Kết nối tri thức. Mình có thể giúp bạn tóm tắt tác phẩm, phân tích bài thơ, lập dàn ý văn bản và giải đáp kiến thức Ngữ Văn. Bạn hãy chọn gợi ý bên dưới nhé! 😊",
+    hello: "Xin chào! Mình là Trợ lý Ngữ Văn AI 4.0 chuẩn chương trình GDPT mới (Kết nối tri thức). Mình có thể hỗ trợ em tóm tắt tác phẩm, phân tích nhân vật và lập dàn ý bài văn cho các lớp 6, 7, 8, 9. Em cần giúp gì nào? 😊",
     
-    "dong-chi-1": `### Dàn ý phân tích hình tượng người lính trong bài thơ "Đồng chí" (Chính Hữu)
+    "anh-trang-1": `### Phân tích ý nghĩa hình tượng vầng trăng trong bài thơ "Ánh trăng" (Nguyễn Duy)
 
-1. **Hoàn cảnh xuất thân nghèo khó:**
-   - Họ đều là những người nông dân mặc áo lính, xuất thân từ những vùng đất nghèo khó ("nước mặn đồng chua", "đất cày lên sỏi đá").
-   - Sự đồng cảm giai cấp chính là nền móng vững chắc kết nối họ lại với nhau.
+1. **Vầng trăng trong quá khứ (Nghĩa tình, gắn bó):**
+   - Trăng là người bạn tri kỷ, gắn bó máu thịt với người lính trong những năm tháng gian khổ ở rừng rậm, chiến trường.
+   - Trăng tượng trưng cho thiên nhiên hồn hậu, nghĩa tình và quá khứ son sắt không thể nào quên.
 
-2. **Sẻ chia gian lao, thiếu thốn nơi chiến trường:**
-   - Cùng chung hiện thực khắc nghiệt: áo rách, chân không giày, những cơn sốt rét rừng run người.
-   - Những cử chỉ ân cần, gắn bó thắm thiết: "Thương nhau tay nắm bàn chân".
+2. **Vầng trăng trong hiện tại (Sự lãng quên và thức tỉnh):**
+   - Khi về thành phố, sống trong điều kiện đầy đủ, con người quen với ánh điện cửa gương và vô tình "vầng trăng đi qua ngõ / như người dưng qua đường".
+   - Cuộc đối diện bất ngờ khi đèn điện tắt: Trăng hiện ra vẹn nguyên, lầm lủi, gợi lại bao ân tình xưa.
+   - Cái "giật mình" của nhân vật trữ tình ở cuối bài là cái giật mình của sự thức tỉnh lương tâm, tự soi rọi lại mình để không sống bội bạc, vô tình với quá khứ.`,
 
-3. **Vẻ đẹp tâm hồn và lý tưởng cao đẹp:**
-   - Sẵn sàng gác lại tình riêng vì nghĩa lớn ("Ruộng nương gửi lại bạn thân cày / Gian nhà không mặc kệ gió lung lay").
-   - Biểu tượng sáng ngời ở cuối bài: "Đầu súng trăng treo" - người lính vừa kiên cường cầm súng bảo vệ Tổ quốc, vừa giữ tâm hồn lãng mạn, yêu hòa bình.`,
+    "nhung-ngoi-sao-xa-xoi-1": `### Phân tích vẻ đẹp thế hệ trẻ qua "Những ngôi sao xa xoi" (Lê Minh Khuê)
 
-    "bep-lua-1": `### Phân tích ý nghĩa hình tượng "bếp lửa" trong bài thơ của Bế Văn Kỳ
+1. **Hoàn cảnh chiến đấu khốc liệt:**
+   - Sống ở trọng điểm trên tuyến đường Trường Sơn, nơi tập trung bom đạn và hiểm nguy rình rập từng phút giây.
+   - Công việc đo và phá bom hẹn giờ đòi hỏi sự tập trung cao độ, thần kinh thép và lòng dũng cảm tuyệt vời.
 
-1. **Bếp lửa là hình ảnh thực gắn liền với kỷ niệm tuổi thơ:**
-   - Là hình ảnh người bà tần tảo sớm hôm nhóm bếp lửa, chắt chiu từng cành củi để sưởi ấm gia đình trong những năm tháng đói kém, chiến tranh.
-   - Gắn với tiếng chim tu hú kêu tha thiết, gợi nhắc không gian quê hương đậm đà tình nghĩa.
-
-2. **Bếp lửa mang ý nghĩa biểu tượng sâu sắc:**
-   - Biểu tượng cho tình bà cháu ấm áp, thiêng liêng.
-   - Biểu tượng cho sức sống, lòng kiên nhẫn và ngọn lửa của niềm tin yêu luôn được truyền từ thế hệ này sang thế hệ khác.`
+2. **Vẻ đẹp tâm hồn và phẩm chất cao đẹp:**
+   - **Tinh thần trách nhiệm:** Luôn hoàn thành xuất sắc nhiệm vụ dù cái chết luôn cận kề.
+   - **Sự dũng cảm:** Không nao núng trước hiểm nguy, bình tĩnh xử lý từng quả bom.
+   - **Tâm hồn trong sáng, lơ thơ mộng mơ:** Dù chiến tranh gian khổ nhưng các cô gái vẫn yêu đời, thích làm đẹp, hay hát và vô cùng yêu thương nhau như ruột thịt.`
   }
 };
 
