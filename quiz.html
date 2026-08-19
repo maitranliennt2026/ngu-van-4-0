@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phòng thi trắc nghiệm Ngữ Văn - Ngữ Văn 4.0</title>
-  <meta name="description" content="Trình làm bài thi trắc nghiệm trực tuyến. Giao diện tập trung, tính giờ tự động, chấm điểm và xem giải thích chi tiết đáp án.">
+  <title>Phòng thi trắc nghiệm Ngữ Văn THCS - Ngữ Văn 4.0</title>
+  <meta name="description" content="Trình làm bài thi trắc nghiệm trực tuyến Ngữ Văn THCS. Giao diện tập trung, tính giờ tự động, chấm điểm và xem giải thích chi tiết đáp án.">
   
   <!-- Tailwind CSS v4 Browser CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -35,7 +35,7 @@
       <!-- Exam loading state -->
       <div id="quiz-loading" class="text-center py-20">
         <div class="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p class="text-slate-500 dark:text-slate-400 font-semibold">Đang chuẩn bị đề thi...</p>
+        <p class="text-slate-500 dark:text-slate-400 font-semibold">Đang chuẩn bị đề thi THCS...</p>
       </div>
 
       <!-- Main Quiz View (Split Layout) -->
@@ -61,7 +61,7 @@
             <div class="space-y-1">
               <div class="flex justify-between text-[10px] font-semibold text-slate-400">
                 <span>Số câu đã chọn</span>
-                <span id="quiz-progress-text">0/15 câu</span>
+                <span id="quiz-progress-text">0/5 câu</span>
               </div>
               <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                 <div id="quiz-progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -106,12 +106,11 @@
         <div class="glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-8 shadow-xl text-center relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 pointer-events-none"></div>
           
-          <h2 class="text-3xl font-extrabold font-serif-title text-slate-900 dark:text-white mb-2">Kết quả thi thử</h2>
-          <p id="result-exam-title" class="text-sm text-slate-500 dark:text-slate-400 mb-6">Đề ôn luyện THPT Quốc gia</p>
+          <h2 class="text-3xl font-extrabold font-serif-title text-slate-900 dark:text-white mb-2">Kết quả thi thử THCS</h2>
+          <p id="result-exam-title" class="text-sm text-slate-500 dark:text-slate-400 mb-6">Đề kiểm tra ôn luyện Ngữ Văn THCS</p>
           
           <!-- Large Circular Progress or Score -->
           <div class="relative w-36 h-36 mx-auto mb-6 flex items-center justify-center">
-            <!-- SVG Circle background -->
             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="8" class="text-slate-100 dark:text-slate-800" fill="none"/>
               <circle id="result-svg-circle" cx="50" cy="50" r="42" stroke="#10b981" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" class="transition-all duration-1000 ease-out" fill="none" stroke-linecap="round"/>
@@ -173,15 +172,14 @@
 
   <script>
     let activeExam = null;
-    let userAnswers = {}; // { questionId: optionIndex }
-    let flaggedQuestions = {}; // { questionId: boolean }
+    let userAnswers = {}; 
+    let flaggedQuestions = {}; 
     let timerInterval = null;
     let totalSecondsSpent = 0;
     let quizSubmitted = false;
     let totalSecondsLimit = 0;
 
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Phân tích tham số URL đề thi (?examId=...)
       const urlParams = new URLSearchParams(window.location.search);
       const examId = urlParams.get("examId");
       
@@ -190,7 +188,6 @@
         return;
       }
 
-      // Lấy thông tin đề thi trong data.js
       activeExam = NGU_VAN_DATA.exams.find(e => e.id === examId);
 
       if (!activeExam) {
@@ -198,10 +195,7 @@
         return;
       }
 
-      // Cập nhật tiêu đề trang
       document.title = `Thi thử: ${activeExam.title} - Ngữ Văn 4.0`;
-
-      // 2. Khởi chạy thi thử
       initQuiz();
     });
 
@@ -218,12 +212,9 @@
       totalSecondsSpent = 0;
       totalSecondsLimit = activeExam.duration * 60;
 
-      // 3. Khởi tạo câu hỏi, thanh tiến độ, bảng điều hướng
       renderQuestionsList();
       renderQuestionNavigator();
       updateProgress();
-
-      // 4. Bắt đầu đếm ngược thời gian
       startTimer();
     }
 
@@ -255,7 +246,6 @@
       const timerText = document.getElementById("timer-countdown");
       timerText.innerText = formattedTime;
 
-      // Đổi màu đỏ khi sắp hết giờ (< 5 phút)
       if (secondsRemaining < 300) {
         timerText.classList.add("text-red-500", "animate-pulse");
       } else {
@@ -263,13 +253,12 @@
       }
     }
 
-    // Kết xuất Danh sách Câu hỏi
     function renderQuestionsList() {
       const container = document.getElementById("questions-list-container");
       
       container.innerHTML = activeExam.questions.map((q, idx) => {
         return `
-          <div id="question-card-${q.id}" class="glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-6 sm:p-8 shadow-sm space-y-6 animate-fade-in delay-${(idx % 5) * 100}">
+          <div id="question-card-${q.id}" class="glass-effect rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-6 sm:p-8 shadow-sm space-y-6 animate-fade-in">
             <div class="flex items-center justify-between pb-3 border-b border-slate-200/20 dark:border-slate-800/20">
               <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Câu số ${idx + 1}</span>
               <button onclick="toggleFlagQuestion(${q.id})" id="flag-btn-${q.id}" class="text-slate-400 hover:text-amber-500 transition-colors">
@@ -277,9 +266,8 @@
               </button>
             </div>
             
-            <p class="font-semibold text-slate-800 dark:text-slate-200 text-base leading-relaxed">${q.text}</p>
+            <p class="font-semibold text-slate-800 dark:text-slate-200 text-base leading-relaxed">${q.text || q.question}</p>
             
-            <!-- Lựa chọn đáp án A, B, C, D -->
             <div class="grid grid-cols-1 gap-3">
               ${q.options.map((opt, optIdx) => {
                 return `
@@ -300,7 +288,6 @@
       }
     }
 
-    // Kết xuất Bảng điều hướng nhanh câu hỏi
     function renderQuestionNavigator() {
       const grid = document.getElementById("question-navigator-grid");
       
@@ -314,11 +301,10 @@
       }).join('');
     }
 
-    // Cuộn mượt đến câu hỏi tương ứng
     function scrollToQuestion(qId) {
       const element = document.getElementById(`question-card-${qId}`);
       if (element) {
-        const offset = 90; // Để tránh che khuất bởi sticky header
+        const offset = 90;
         const bodyRect = document.body.getBoundingClientRect().top;
         const elementRect = element.getBoundingClientRect().top;
         const elementPosition = elementRect - bodyRect;
@@ -331,7 +317,6 @@
       }
     }
 
-    // Gắn cờ chú ý câu hỏi cần xem lại
     function toggleFlagQuestion(qId) {
       flaggedQuestions[qId] = !flaggedQuestions[qId];
       
@@ -341,29 +326,22 @@
       if (flaggedQuestions[qId]) {
         btn.classList.add("text-amber-500");
         btn.classList.remove("text-slate-400");
-        
         navBtn.classList.add("border-amber-400", "bg-amber-400/10", "text-amber-600", "dark:text-amber-400");
       } else {
         btn.classList.remove("text-amber-500");
         btn.classList.add("text-slate-400");
-        
         navBtn.classList.remove("border-amber-400", "bg-amber-400/10", "text-amber-600", "dark:text-amber-400");
-        
-        // Hồi phục lại màu nếu đã chọn đáp án
         if (qId in userAnswers) {
           navBtn.classList.add("bg-emerald-500", "text-white", "border-emerald-500");
         }
       }
     }
 
-    // Xử lý chọn đáp án
     function selectOption(qId, optIdx) {
-      if (quizSubmitted) return; // Không cho chọn lại sau khi nộp bài
+      if (quizSubmitted) return;
 
-      // 1. Lưu câu trả lời
       userAnswers[qId] = optIdx;
 
-      // 2. Cập nhật CSS hiển thị nút đã chọn trong nhóm đáp án câu đó
       const q = activeExam.questions.find(item => item.id === qId);
       q.options.forEach((opt, idx) => {
         const btn = document.getElementById(`option-btn-${qId}-${idx}`);
@@ -380,22 +358,18 @@
         }
       });
 
-      // 3. Cập nhật bảng điều hướng
       const navBtn = document.getElementById(`nav-btn-${qId}`);
       if (!flaggedQuestions[qId]) {
         navBtn.className = "h-10 rounded-xl bg-emerald-500 text-white border-emerald-500 text-xs font-bold transition-all flex items-center justify-center cursor-pointer";
       }
 
-      // Cập nhật thanh tiến độ
       updateProgress();
 
-      // Cập nhật lại icon trong dấu tích chọn
       if (typeof lucide !== "undefined") {
         lucide.createIcons();
       }
     }
 
-    // Cập nhật số liệu tiến độ làm bài
     function updateProgress() {
       const answeredCount = Object.keys(userAnswers).length;
       const totalCount = activeExam.questions.length;
@@ -405,7 +379,6 @@
       document.getElementById("quiz-progress-bar").style.width = `${percent}%`;
     }
 
-    // Hỏi xác nhận trước khi nộp
     function confirmSubmitQuiz() {
       const answeredCount = Object.keys(userAnswers).length;
       const totalCount = activeExam.questions.length;
@@ -423,17 +396,16 @@
       submitQuiz();
     }
 
-    // Nộp bài và chấm điểm
     function submitQuiz() {
       quizSubmitted = true;
       clearInterval(timerInterval);
 
-      // Tính điểm
       let correctAnswersCount = 0;
       const totalQuestionsCount = activeExam.questions.length;
 
       activeExam.questions.forEach(q => {
-        const correctOpt = q.correctOption;
+        // Hỗ trợ cả trường hợp dùng correctOption hoặc correct
+        const correctOpt = q.correctOption !== undefined ? q.correctOption : q.correct;
         const userOpt = userAnswers[q.id];
 
         if (userOpt !== undefined && userOpt === correctOpt) {
@@ -441,30 +413,24 @@
         }
       });
 
-      // Tính điểm hệ 10
       const finalScore = parseFloat(((correctAnswersCount / totalQuestionsCount) * 10).toFixed(1));
       const accuracyPercent = Math.round((correctAnswersCount / totalQuestionsCount) * 100);
 
-      // Định nghĩa thời gian làm
       const minutesSpent = Math.floor(totalSecondsSpent / 60);
       const secondsSpent = totalSecondsSpent % 60;
       const formattedTimeSpent = `${minutesSpent.toString().padStart(2, '0')}:${secondsSpent.toString().padStart(2, '0')}`;
 
-      // Lưu kết quả vào hệ thống stats
       saveExamResult(activeExam.id, activeExam.title, correctAnswersCount, totalQuestionsCount, formattedTimeSpent);
 
-      // Chuyển chế độ hiển thị từ Giao diện thi sang Giao diện kết quả
       document.getElementById("quiz-view").classList.add("hidden");
       document.getElementById("result-view").classList.remove("hidden");
 
-      // Cập nhật dữ liệu kết quả
       document.getElementById("result-exam-title").innerText = activeExam.title;
       document.getElementById("result-score-text").innerText = finalScore.toFixed(1);
       document.getElementById("result-correct-count").innerText = `${correctAnswersCount}/${totalQuestionsCount}`;
       document.getElementById("result-accuracy").innerText = `${accuracyPercent}%`;
       document.getElementById("result-time-spent").innerText = formattedTimeSpent;
 
-      // Di chuyển vòng tròn SVG đánh giá
       const circle = document.getElementById("result-svg-circle");
       const radius = circle.r.baseVal.value;
       const circumference = radius * 2 * Math.PI;
@@ -472,19 +438,15 @@
       circle.style.strokeDasharray = `${circumference} ${circumference}`;
       circle.style.strokeDashoffset = offset;
 
-      // Kết xuất chi tiết Sửa bài giải
       renderCorrectionDetails();
-
-      // Cuộn lên đầu xem điểm số
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Tải và hiển thị Sửa bài chi tiết
     function renderCorrectionDetails() {
       const container = document.getElementById("correction-list-container");
       
       container.innerHTML = activeExam.questions.map((q, idx) => {
-        const correctOpt = q.correctOption;
+        const correctOpt = q.correctOption !== undefined ? q.correctOption : q.correct;
         const userOpt = userAnswers[q.id];
         const isCorrect = userOpt === correctOpt;
 
@@ -497,9 +459,8 @@
               </span>
             </div>
 
-            <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm leading-relaxed">${q.text}</p>
+            <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm leading-relaxed">${q.text || q.question}</p>
 
-            <!-- Nhóm đáp án có bôi màu đúng/sai -->
             <div class="grid grid-cols-1 gap-2">
               ${q.options.map((opt, optIdx) => {
                 let statusClass = "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400";
@@ -522,7 +483,6 @@
               }).join('')}
             </div>
 
-            <!-- Hộp Giải thích chi tiết (Lời giải) -->
             <div class="p-4 rounded-xl border border-amber-500/10 bg-amber-500/5 dark:bg-amber-950/10 text-slate-600 dark:text-slate-400 text-xs leading-relaxed space-y-1">
               <span class="font-bold text-amber-600 dark:text-amber-400 flex items-center space-x-1">
                 <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>
@@ -539,7 +499,6 @@
       }
     }
 
-    // Làm lại bài thi
     function retakeQuiz() {
       if (confirm("Bạn có muốn xóa kết quả cũ và bắt đầu thi lại đề này không?")) {
         initQuiz();
